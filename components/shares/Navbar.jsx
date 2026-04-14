@@ -117,20 +117,45 @@ export default function Navbar() {
 
             <button
               aria-expanded={isMenuOpen}
+              aria-controls="mobile-navigation-menu"
               aria-label="Toggle navigation menu"
               className="inline-flex h-10 w-10 shrink-0 flex-col items-center justify-center gap-1.5 rounded-[5px] text-white transition hover:bg-white/10 lg:hidden"
               type="button"
               onClick={() => setIsMenuOpen((value) => !value)}
             >
-              <span className="h-0.5 w-5 rounded-full bg-current" />
-              <span className="h-0.5 w-5 rounded-full bg-current" />
-              <span className="h-0.5 w-5 rounded-full bg-current" />
+              <span
+                className={`h-0.5 w-5 rounded-full bg-current transition-transform duration-300 ease-[cubic-bezier(0.22,1,0.36,1)] ${
+                  isMenuOpen ? "translate-y-2 rotate-45" : ""
+                }`}
+              />
+              <span
+                className={`h-0.5 w-5 rounded-full bg-current transition duration-300 ease-[cubic-bezier(0.22,1,0.36,1)] ${
+                  isMenuOpen ? "scale-x-0 opacity-0" : "scale-x-100 opacity-100"
+                }`}
+              />
+              <span
+                className={`h-0.5 w-5 rounded-full bg-current transition-transform duration-300 ease-[cubic-bezier(0.22,1,0.36,1)] ${
+                  isMenuOpen ? "-translate-y-2 -rotate-45" : ""
+                }`}
+              />
             </button>
           </div>
 
-          {isMenuOpen ? (
-            <div className="border-t border-white/10 pt-3 lg:hidden">
-              <nav className="flex flex-col gap-2 font-['Poppins',sans-serif] text-sm font-medium text-white/90">
+          <div
+            aria-hidden={!isMenuOpen}
+            className={`grid overflow-hidden border-white/10 transition-[grid-template-rows,opacity,padding-top,border-color] duration-300 ease-[cubic-bezier(0.22,1,0.36,1)] lg:hidden ${
+              isMenuOpen
+                ? "grid-rows-[1fr] border-t pt-3 opacity-100"
+                : "pointer-events-none grid-rows-[0fr] border-t border-transparent pt-0 opacity-0"
+            }`}
+            id="mobile-navigation-menu"
+          >
+            <div className="min-h-0 overflow-hidden">
+              <nav
+                className={`flex flex-col gap-2 font-['Poppins',sans-serif] text-sm font-medium text-white/90 transition-[transform,opacity] duration-300 ease-[cubic-bezier(0.22,1,0.36,1)] ${
+                  isMenuOpen ? "translate-y-0 opacity-100 delay-75" : "-translate-y-2 opacity-0"
+                }`}
+              >
                 {navItems.map((item) => (
                   <Link
                     key={item.label}
@@ -152,7 +177,7 @@ export default function Navbar() {
                 </Link>
               </nav>
             </div>
-          ) : null}
+          </div>
         </header>
 
         <div className="hidden size-11 shrink-0 items-center justify-center rounded-full bg-[#5f0c66] text-white ring-1 ring-white/15 sm:flex">

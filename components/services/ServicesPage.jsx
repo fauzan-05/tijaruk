@@ -101,7 +101,7 @@ export default function ServicesPage() {
     <main className="min-h-screen overflow-x-hidden bg-[#f5f5f5] text-[#141414]">
       <ServicesHero />
 
-      <section className="px-4 pb-16 sm:px-6 lg:px-10 lg:pb-24">
+i      <section className="px-4 pb-16 sm:px-6 lg:px-10 lg:pb-24">
         <div ref={stackRef} className="mx-auto flex max-w-[1440px] flex-col gap-8">
           {serviceSections.map((service) => (
             <div key={service.id} className="service-stack-card">

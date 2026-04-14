@@ -8,7 +8,13 @@ import { createScrollTriggerRefresh } from "../animation/scrollTriggerRefresh";
 import CoreValuesAccordion from "./CoreValuesAccordion";
 import Footer from "../shares/Footer";
 import Navbar from "../shares/Navbar";
-import { aboutHero, coreValues, missionVision, whoWeAre, whyWeExist } from "./aboutData";
+import {
+  aboutHero,
+  coreValues,
+  missionVision,
+  whoWeAre,
+  whyWeExist,
+} from "./aboutData";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -34,6 +40,7 @@ function RemoteImage({
         [`data-${revealGroup}-frame`]: "",
       }
     : {};
+
   const imageRevealProps = revealOrder
     ? {
         "data-reveal-order": revealOrder,
@@ -74,19 +81,34 @@ function ValueCard({ image, title }) {
         />
       </div>
       <div className="flex min-h-[108px] items-center justify-center px-5 py-6 text-center">
-        <h3 className="font-ibrand text-[1.7rem] leading-[1.05] text-[#161616]">{title}</h3>
+        <h3 className="font-ibrand text-[1.7rem] leading-[1.05] text-[#161616]">
+          {title}
+        </h3>
       </div>
     </article>
   );
 }
 
 export default function AboutPage() {
+  const coreValuesMobileRef = useRef(null);
+  const whoImagesRef = useRef(null);
   const whoSectionRef = useRef(null);
+  const missionVisionRef = useRef(null);
   const whyHeadingRef = useRef(null);
   const whySectionRef = useRef(null);
 
   useLayoutEffect(() => {
-    if (!whoSectionRef.current || !whyHeadingRef.current || !whySectionRef.current) return;
+    if (
+      !coreValuesMobileRef.current ||
+      !whoImagesRef.current ||
+      !whoSectionRef.current ||
+      !missionVisionRef.current ||
+      !whyHeadingRef.current ||
+      !whySectionRef.current
+    ) {
+      return;
+    }
+
     const page = whoSectionRef.current.closest("main");
 
     const ctx = gsap.context(() => {
@@ -101,10 +123,17 @@ export default function AboutPage() {
       }) => {
         const frames = gsap.utils
           .toArray(frameSelector, section)
-          .sort((a, b) => Number(a.dataset.revealOrder) - Number(b.dataset.revealOrder));
+          .sort(
+            (a, b) =>
+              Number(a.dataset.revealOrder) - Number(b.dataset.revealOrder)
+          );
+
         const images = gsap.utils
           .toArray(imageSelector, section)
-          .sort((a, b) => Number(a.dataset.revealOrder) - Number(b.dataset.revealOrder));
+          .sort(
+            (a, b) =>
+              Number(a.dataset.revealOrder) - Number(b.dataset.revealOrder)
+          );
 
         if (!images.length) return;
 
@@ -168,6 +197,7 @@ export default function AboutPage() {
         frameSelector: "[data-who-frame]",
         imageSelector: "[data-who-image]",
         section: whoSectionRef.current,
+        trigger: whoImagesRef.current,
       });
 
       createCurtainReveal({
@@ -180,10 +210,21 @@ export default function AboutPage() {
         trigger: whyHeadingRef.current,
       });
 
+      createCurtainReveal({
+        frameSelector: "[data-mission-frame]",
+        imageSelector: "[data-mission-image]",
+        section: missionVisionRef.current,
+        stagger: 0.42,
+        start: "top 70%",
+      });
+
       ScrollTrigger.refresh();
     });
 
-    const cleanupRefresh = createScrollTriggerRefresh(ScrollTrigger, page);
+    const cleanupRefresh = createScrollTriggerRefresh(
+      ScrollTrigger,
+      page || undefined
+    );
 
     return () => {
       cleanupRefresh();
@@ -230,7 +271,10 @@ export default function AboutPage() {
         </div>
       </section>
 
-      <section ref={whoSectionRef} className="bg-white -mt-4 py-16 sm:-mt-6 sm:py-20 lg:-mt-8 lg:py-24">
+      <section
+        ref={whoSectionRef}
+        className="bg-white -mt-4 py-16 sm:-mt-6 sm:py-20 lg:-mt-8 lg:py-24"
+      >
         <div className="mx-auto mt-6 grid max-w-[1320px] gap-10 px-4 sm:px-6 lg:mt-10 lg:grid-cols-[minmax(0,0.9fr)_minmax(340px,0.78fr)] lg:items-start lg:px-10">
           <div className="max-w-[620px]">
             <SectionEyebrow>{whoWeAre.eyebrow}</SectionEyebrow>
@@ -245,7 +289,10 @@ export default function AboutPage() {
             </div>
           </div>
 
-          <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-2">
+          <div
+            ref={whoImagesRef}
+            className="grid gap-6 sm:grid-cols-2 sm:gap-4 lg:grid-cols-2"
+          >
             <RemoteImage
               alt={whoWeAre.images[0].alt}
               className="h-[200px] sm:h-[220px] lg:h-[245px] lg:w-[82%] lg:justify-self-end lg:translate-x-[10%]"
@@ -255,14 +302,14 @@ export default function AboutPage() {
             />
             <RemoteImage
               alt={whoWeAre.images[1].alt}
-              className="h-[200px] translate-y-4 sm:mt-10 sm:h-[220px] lg:h-[245px] lg:w-[82%] lg:justify-self-center lg:translate-y-24"
-              revealOrder={3}
+              className="h-[200px] sm:mt-10 sm:h-[220px] sm:translate-y-4 lg:h-[245px] lg:w-[82%] lg:justify-self-center lg:translate-y-24"
+              revealOrder={2}
               src={whoWeAre.images[1].src}
             />
             <RemoteImage
               alt={whoWeAre.images[2].alt}
               className="h-[200px] sm:col-span-1 sm:h-[220px] lg:-mt-8 lg:h-[245px] lg:w-[82%] lg:justify-self-end lg:translate-x-[10%]"
-              revealOrder={2}
+              revealOrder={3}
               src={whoWeAre.images[2].src}
             />
           </div>
@@ -301,12 +348,18 @@ export default function AboutPage() {
         </div>
       </section>
 
-      <section className="bg-white py-16 sm:py-20 lg:py-24">
+      <section
+        ref={missionVisionRef}
+        className="bg-white py-16 sm:py-20 lg:py-24"
+      >
         <div className="mx-auto max-w-[1320px] px-4 sm:px-6 lg:px-10">
-          <div className="grid gap-8 lg:grid-cols-[minmax(0,0.92fr)_minmax(300px,0.8fr)]">
-            <div className="space-y-10">
-              {missionVision.map((item) => (
-                <article key={item.title} className="max-w-[690px]">
+          <div className="space-y-10 lg:space-y-12">
+            {missionVision.map((item, index) => (
+              <div
+                key={item.title}
+                className="grid gap-8 lg:grid-cols-[minmax(0,0.92fr)_minmax(300px,0.8fr)] lg:items-start"
+              >
+                <article className="max-w-[690px]">
                   <h2 className="font-ibrand text-[2rem] leading-none text-[#151525] sm:text-[2.6rem]">
                     {item.title}
                   </h2>
@@ -316,19 +369,16 @@ export default function AboutPage() {
                     ))}
                   </div>
                 </article>
-              ))}
-            </div>
 
-            <div className="space-y-6 lg:space-y-8">
-              {missionVision.map((item) => (
                 <RemoteImage
-                  key={item.image.src}
                   alt={item.image.alt}
                   className="h-[260px] sm:h-[340px] lg:h-[360px]"
+                  revealGroup="mission"
+                  revealOrder={index + 1}
                   src={item.image.src}
                 />
-              ))}
-            </div>
+              </div>
+            ))}
           </div>
         </div>
       </section>
@@ -339,13 +389,32 @@ export default function AboutPage() {
             Our Core Values
           </h2>
 
-          <div className="mt-10 grid gap-5 sm:grid-cols-2 xl:grid-cols-3 lg:hidden">
-            {coreValues.map((value) => (
-              <ValueCard key={value.title} image={value.image} title={value.title} />
+          <div
+            ref={coreValuesMobileRef}
+            className="relative mt-10 lg:hidden"
+          >
+            {coreValues.map((value, index) => (
+              <div
+                key={value.title}
+                className="sticky top-[90px]"
+                style={{
+                  zIndex: index + 1,
+                  paddingTop: index === 0 ? "0px" : "16px",
+                  marginBottom: "24px",
+                }}
+              >
+                <div className="bg-white">
+                  <ValueCard image={value.image} title={value.title} />
+                </div>
+              </div>
             ))}
+
+            <div className="h-[220px]" />
           </div>
 
-          <CoreValuesAccordion values={coreValues} />
+          <div className="hidden lg:block">
+            <CoreValuesAccordion values={coreValues} />
+          </div>
         </div>
       </section>
 
