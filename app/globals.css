@@ -1,0 +1,41 @@
+@import url("https://fonts.googleapis.com/css2?family=Manrope:wght@500;700;800&family=Poppins:wght@400;500;600;700;800&display=swap");
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@font-face {
+  font-family: "Ibrand";
+  src: url("/fonts/ibrand.otf") format("opentype");
+  font-style: normal;
+  font-weight: 400;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  background: #fbfafa;
+  color: #161616;
+  font-family: "Poppins", sans-serif;
+}
+
+.font-ibrand {
+  font-family: "Ibrand", sans-serif;
+}
+
+@keyframes preloader-line {
+  from {
+    transform: scaleX(0);
+  }
+
+  to {
+    transform: scaleX(1);
+  }
+}
