@@ -12,7 +12,7 @@ export default function Hero() {
         alt=""
         className="absolute inset-0 size-full object-cover object-center"
         fill
-        priority
+         loading="lazy"
         sizes="100vw"
         src={assets.heroImage}
       />
@@ -35,7 +35,7 @@ export default function Hero() {
                   alt="Trade partnership preview"
                   className="h-[145px] w-full object-cover"
                   height={145}
-                  priority
+                   loading="lazy"
                   sizes="(max-width: 640px) 100vw, 260px"
                   src={assets.aboutImage}
                   width={260}

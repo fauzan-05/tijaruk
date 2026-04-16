@@ -97,7 +97,7 @@ export default function Preloader() {
             alt="Tijaruk"
             className="size-full object-fill"
             decoding="async"
-            loading="eager"
+            loading="lazy"
             src="/tijaruk-logo.svg"
           />
         </div>

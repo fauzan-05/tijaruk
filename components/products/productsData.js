@@ -2,7 +2,7 @@ export const productsHero = {
   title: "Products",
   description:
     "Explore export-ready essentials and industrial goods sourced through TIJARUK's trusted supplier network.",
-  image: "/products/hero.jpg",
+  image: "/products/hero.webp",
 };
 
 export const productCategories = [
@@ -15,13 +15,16 @@ export const productCategories = [
   "Automotive",
 ];
 
+const PRODUCT_DETAIL_CAPTION =
+  "Lorem ipsum dolor sit amet consectetur. Interdum facilisis sollicitudin malesuada commodo. Sed sit nec nunc fermentum sed diam in viverra pellentesque. Tincidunt odio aliquet .";
+
 export const productCards = [
   {
     name: "Rice",
     slug: "rice",
-    image: "/products/rice.jpg",
-    hoverImage: "/products/rice02.png?v=3",
-    galleryImages: ["/products/rice02.png?v=3", "/oredrnow/rice03.png"],
+    image: "/products/rice.webp",
+    hoverImage: "/products/rice02.webp",
+    galleryImages: ["/products/rice02.webp", "/oredrnow/rice03.webp"],
     category: "Food & Agriculture",
     description:
       "Premium long-grain rice sourced for wholesale buyers who need consistency, export-grade packing, and dependable supply planning.",
@@ -32,42 +35,38 @@ export const productCards = [
     units: ["Kg", "Ton", "Bag"],
     categoriesLabel: "Sourcing",
     sourceModes: ["Domestic Sourcing", "International Sourcing"],
-    infoText:
-      "This rice line is sourced for wholesale programs that need stable grain quality, competitive packing formats, and practical import or domestic movement support.",
-    descriptionText:
-      "Our rice sourcing support combines supplier validation, order coordination, documentation guidance, and delivery planning so buyers can move with less friction and more confidence.",
+    infoText: PRODUCT_DETAIL_CAPTION,
+    descriptionText: PRODUCT_DETAIL_CAPTION,
     features: ["Fast shipping", "Secure payments"],
     relatedSlugs: ["spices", "vegetable-oil", "steel-rods"],
   },
   {
     name: "Spices",
     slug: "spices",
-    image: "/products/spices.jpg",
-    hoverImage: "/products/spices02.png?v=3",
-    galleryImages: ["/products/spices02.png?v=3", "/oredrnow/spices03.png"],
+    image: "/products/spices.webp",
+    hoverImage: "/products/spices02.webp",
+    galleryImages: ["/products/spices02.webp", "/oredrnow/spices03.webp"],
     category: "Food & Agriculture",
     description:
       "Aromatic spice selections prepared for retail, foodservice, and bulk trade with traceable sourcing and competitive pricing.",
     price: "5.34 USD",
     reviews: 146,
     detailPrice: "5.34 USD",
-    minimumOrder: 25,
+    minimumOrder: 10,
     units: ["Kg", "Bag", "Ton"],
     categoriesLabel: "Sourcing",
     sourceModes: ["Domestic Sourcing", "International Sourcing"],
-    infoText:
-      "Wholesale spice assortments for distributors, packaged brands, and food businesses looking for freshness, consistency, and traceable sourcing.",
-    descriptionText:
-      "TIJARUK helps compare supplier quality, pack sizes, and shipping options so spice sourcing becomes easier to scale across markets.",
+    infoText: PRODUCT_DETAIL_CAPTION,
+    descriptionText: PRODUCT_DETAIL_CAPTION,
     features: ["Fast shipping", "Secure payments"],
     relatedSlugs: ["rice", "vegetable-oil", "cleaning-chemicals"],
   },
   {
     name: "Switches",
     slug: "switches",
-    image: "/products/switches.jpg",
-    hoverImage: "/products/switces02.png?v=3",
-    galleryImages: ["/products/switces02.png?v=3", "/oredrnow/switces03.png"],
+    image: "/products/switches.webp",
+    hoverImage: "/products/switces02.webp",
+    galleryImages: ["/products/switces02.webp", "/oredrnow/switces03.webp"],
     category: "Electrical",
     description:
       "Durable electrical switches and related components for project supply, distribution channels, and repeat procurement cycles.",
@@ -78,19 +77,17 @@ export const productCards = [
     units: ["Units", "Box", "Carton"],
     categoriesLabel: "Electrical",
     sourceModes: ["Domestic Sourcing", "International Sourcing"],
-    infoText:
-      "Electrical switch options suited for project procurement, dealer stock, and repeat inventory planning with quality-focused supplier checks.",
-    descriptionText:
-      "We support sourcing with better supplier comparison, specification clarity, and coordination across samples, timelines, and shipping.",
+    infoText: PRODUCT_DETAIL_CAPTION,
+    descriptionText: PRODUCT_DETAIL_CAPTION,
     features: ["Fast shipping", "Secure payments"],
     relatedSlugs: ["steel-rods", "pipes", "spare-parts"],
   },
   {
     name: "Vegetable Oil",
     slug: "vegetable-oil",
-    image: "/products/vegitableoil.jpg",
-    hoverImage: "/products/vegitableoil02.png?v=3",
-    galleryImages: ["/products/vegitableoil02.png?v=3", "/oredrnow/vegitableoil03.png"],
+    image: "/products/vegitableoil.webp",
+    hoverImage: "/products/vegitableoil02.webp",
+    galleryImages: ["/products/vegitableoil02.webp", "/oredrnow/vegitableoil03.webp"],
     category: "Food & Agriculture",
     description:
       "Wholesale vegetable oil options with strong shelf presence, scalable volumes, and supplier coordination for import or local trade.",
@@ -101,19 +98,17 @@ export const productCards = [
     units: ["L", "Carton", "Pallet"],
     categoriesLabel: "Sourcing",
     sourceModes: ["Domestic Sourcing", "International Sourcing"],
-    infoText:
-      "Commercial vegetable oil supply for wholesale buyers needing stable stock, reliable packaging standards, and scalable replenishment.",
-    descriptionText:
-      "From sourcing discussions to delivery planning, TIJARUK helps keep edible oil procurement clearer, faster, and easier to manage.",
+    infoText: PRODUCT_DETAIL_CAPTION,
+    descriptionText: PRODUCT_DETAIL_CAPTION,
     features: ["Fast shipping", "Secure payments"],
     relatedSlugs: ["rice", "spices", "fabrics"],
   },
   {
     name: "Steel Rods",
     slug: "steel-rods",
-    image: "/products/steel-rods.jpg",
-    hoverImage: "/products/steel02.png?v=3",
-    galleryImages: ["/products/steel02.png?v=3", "/oredrnow/steel03.png"],
+    image: "/products/steel-rods.webp",
+    hoverImage: "/products/steel02.webp",
+    galleryImages: ["/products/steel02.webp", "/oredrnow/steel03.webp"],
     category: "Industrial Materials",
     description:
       "Construction and fabrication-grade steel rods supplied with practical sourcing support, clearer specifications, and faster follow-up.",
@@ -124,19 +119,17 @@ export const productCards = [
     units: ["Ton", "Bundle", "Truckload"],
     categoriesLabel: "Industrial Materials",
     sourceModes: ["Domestic Sourcing", "International Sourcing"],
-    infoText:
-      "Steel rod sourcing designed for industrial buyers that need dependable material quality, supplier responsiveness, and better quotation clarity.",
-    descriptionText:
-      "We help evaluate production capacity, quality assurance, and logistics so bulk steel buying becomes more straightforward and lower-risk.",
+    infoText: PRODUCT_DETAIL_CAPTION,
+    descriptionText: PRODUCT_DETAIL_CAPTION,
     features: ["Fast shipping", "Secure payments"],
     relatedSlugs: ["switches", "pipes", "spare-parts"],
   },
   {
     name: "Fabrics",
     slug: "fabrics",
-    image: "/products/fabrics.jpg",
-    hoverImage: "/products/fabrics02.png?v=3",
-    galleryImages: ["/products/fabrics02.png?v=3", "/oredrnow/fabrics03.png"],
+    image: "/products/fabrics.webp",
+    hoverImage: "/products/fabrics02.webp",
+    galleryImages: ["/products/fabrics02.webp", "/oredrnow/fabrics03.webp"],
     category: "Textiles",
     description:
       "Commercial fabric selections suitable for apparel, interiors, and private-label sourcing with flexible order planning.",
@@ -147,19 +140,17 @@ export const productCards = [
     units: ["Meters", "Roll", "Bale"],
     categoriesLabel: "Textiles",
     sourceModes: ["Domestic Sourcing", "International Sourcing"],
-    infoText:
-      "Fabric sourcing for private-label programs, interior supply, and bulk textile orders that need consistent look, feel, and color matching.",
-    descriptionText:
-      "TIJARUK supports supplier shortlisting, sample review, and order planning so textile buying decisions feel more structured and dependable.",
+    infoText: PRODUCT_DETAIL_CAPTION,
+    descriptionText: PRODUCT_DETAIL_CAPTION,
     features: ["Fast shipping", "Secure payments"],
     relatedSlugs: ["rice", "vegetable-oil", "cleaning-chemicals"],
   },
   {
     name: "Pipes",
     slug: "pipes",
-    image: "/products/pipe.jpg",
-    hoverImage: "/products/pipe02.png?v=3",
-    galleryImages: ["/products/pipe02.png?v=3", "/oredrnow/pipe03.png"],
+    image: "/products/pipe.webp",
+    hoverImage: "/products/pipe02.webp",
+    galleryImages: ["/products/pipe02.webp", "/oredrnow/pipe03.webp"],
     category: "Industrial Materials",
     description:
       "Pipe and tubing products sourced for infrastructure, maintenance, and industrial demand with quality-focused supplier vetting.",
@@ -170,19 +161,17 @@ export const productCards = [
     units: ["Units", "Bundle", "Truckload"],
     categoriesLabel: "Industrial Materials",
     sourceModes: ["Domestic Sourcing", "International Sourcing"],
-    infoText:
-      "Pipe and tubing supply support for infrastructure and industrial projects where sizing accuracy and supplier reliability matter.",
-    descriptionText:
-      "We help buyers compare technical fit, production timelines, and shipping routes so supply decisions stay aligned with project needs.",
+    infoText: PRODUCT_DETAIL_CAPTION,
+    descriptionText: PRODUCT_DETAIL_CAPTION,
     features: ["Fast shipping", "Secure payments"],
     relatedSlugs: ["steel-rods", "switches", "spare-parts"],
   },
   {
     name: "Spare Parts",
     slug: "spare-parts",
-    image: "/products/spare-parts.jpg",
-    hoverImage: "/products/spare02.png?v=3",
-    galleryImages: ["/products/spare02.png?v=3", "/oredrnow/spare03.png"],
+    image: "/products/spare-parts.webp",
+    hoverImage: "/products/spare02.webp",
+    galleryImages: ["/products/spare02.webp", "/oredrnow/spare03.webp"],
     category: "Automotive",
     description:
       "Machined and replacement spare parts for ongoing operations, resale, and procurement programs that require reliable repeat supply.",
@@ -193,19 +182,17 @@ export const productCards = [
     units: ["Units", "Box", "Carton"],
     categoriesLabel: "Automotive",
     sourceModes: ["Domestic Sourcing", "International Sourcing"],
-    infoText:
-      "Replacement and spare parts sourcing for operational continuity, dealer supply, and repeat reorder programs.",
-    descriptionText:
-      "Our sourcing process helps clarify specifications, supplier readiness, and freight timing so procurement teams can move faster with fewer surprises.",
+    infoText: PRODUCT_DETAIL_CAPTION,
+    descriptionText: PRODUCT_DETAIL_CAPTION,
     features: ["Fast shipping", "Secure payments"],
     relatedSlugs: ["pipes", "switches", "steel-rods"],
   },
   {
     name: "Cleaning Chemicals",
     slug: "cleaning-chemicals",
-    image: "/products/cleaning-chemicals.jpg",
-    hoverImage: "/products/chemicals02.png?v=3",
-    galleryImages: ["/products/chemicals02.png?v=3", "/oredrnow/chemicals03.png"],
+    image: "/products/cleaning-chemicals.webp",
+    hoverImage: "/products/chemicals02.webp",
+    galleryImages: ["/products/chemicals02.webp", "/oredrnow/chemicals03.webp"],
     category: "Chemicals",
     description:
       "Commercial cleaning and maintenance chemical lines prepared for wholesale distribution, facilities use, and market rollout.",
@@ -216,10 +203,8 @@ export const productCards = [
     units: ["L", "Carton", "Pallet"],
     categoriesLabel: "Chemicals",
     sourceModes: ["Domestic Sourcing", "International Sourcing"],
-    infoText:
-      "Cleaning chemical sourcing for wholesale, facilities, and commercial maintenance programs with packaging and compliance considerations built in.",
-    descriptionText:
-      "TIJARUK helps structure supplier comparison, packaging choices, and delivery planning so chemical procurement feels more manageable.",
+    infoText: PRODUCT_DETAIL_CAPTION,
+    descriptionText: PRODUCT_DETAIL_CAPTION,
     features: ["Fast shipping", "Secure payments"],
     relatedSlugs: ["fabrics", "spices", "vegetable-oil"],
   },
@@ -236,15 +221,17 @@ export function getRelatedProducts(slug) {
     return [];
   }
 
+  const RELATED_COUNT = 8;
+
   const relatedFromList = product.relatedSlugs
     .map((relatedSlug) => getProductBySlug(relatedSlug))
     .filter(Boolean);
 
-  if (relatedFromList.length >= 3) {
-    return relatedFromList.slice(0, 3);
+  if (relatedFromList.length >= RELATED_COUNT) {
+    return relatedFromList.slice(0, RELATED_COUNT);
   }
 
   return productCards
     .filter((item) => item.slug !== slug)
-    .slice(0, 3);
+    .slice(0, RELATED_COUNT);
 }

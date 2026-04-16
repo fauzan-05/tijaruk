@@ -4,7 +4,7 @@ export const aboutHero = {
     "Tijaruk connects Saudi Arabia-based wholesalers, suppliers, and retailers\nto global markets through trusted partnerships, transparent pricing, and\ncomplete business support. We provide end-to-end solutions covering\nsourcing, branding, consultancy, and technology--helping businesses\ngrow with confidence and ease.",
     "Our vision is to be the most trusted digital bridge between Saudi Arabia and the world, making global trade simpler, smarter, and more accessible for entrepreneurs and enterprises alike.",
   ],
-  image: "/about/hero.jpg",
+  image: "/about/hero.webp",
 };
 
 export const whoWeAre = {
@@ -18,17 +18,17 @@ export const whoWeAre = {
   images: [
     {
       alt: "Container yard with stacked cargo",
-      src: "/about/who-1.jpg",
+      src: "/about/who-1.webp",
       className: "md:row-span-1",
     },
     {
       alt: "Cargo ship on deep blue water",
-      src: "/about/who-2.jpg",
+      src: "/about/who-2.webp",
       className: "md:translate-y-12",
     },
     {
       alt: "Port logistics aerial view",
-      src: "/about/who-3.jpg",
+      src: "/about/who-3.webp",
       className: "md:-translate-y-6",
     },
   ],
@@ -44,11 +44,11 @@ export const whyWeExist = {
   images: [
     {
       alt: "Global shipping network visual",
-      src: "/about/who-2.jpg",
+      src: "/about/who-2.webp",
     },
     {
       alt: "Aerial freight terminal at sunset",
-      src: "/about/who-3.jpg",
+      src: "/about/who-3.webp",
     },
   ],
 };
@@ -62,7 +62,7 @@ export const missionVision = [
     ],
     image: {
       alt: "Air cargo logistics and shipping containers",
-      src: "/about/mission.jpg",
+      src: "/about/mission.webp",
     },
   },
   {
@@ -73,7 +73,7 @@ export const missionVision = [
     ],
     image: {
       alt: "Cargo ship moving across a bright blue harbor",
-      src: "/about/vision.jpg",
+      src: "/about/vision.webp",
     },
   },
 ];
@@ -81,27 +81,27 @@ export const missionVision = [
 export const coreValues = [
   {
     title: "Saudi-First Global Connection",
-    image: "/about/value-1.jpg",
+    image: "/about/value-1.webp",
   },
   {
     title: "Clarity & Transparency",
-    image: "/about/value-2.jpg",
+    image: "/about/value-2.webp",
   },
   {
     title: "Growth with Real Support",
-    image: "/about/value-3.jpg",
+    image: "/about/value-3.webp",
   },
   {
     title: "Innovation & Excellence",
-    image: "/about/value-4.jpg",
+    image: "/about/value-4.webp",
   },
   {
     title: "Trust & Reliability",
-    image: "/about/value-5.jpg",
+    image: "/about/value-5.webp",
   },
   {
     title: "Sustainable Impact",
-    image: "/about/value-6.jpg",
+    image: "/about/value-6.webp",
   },
 ];
 

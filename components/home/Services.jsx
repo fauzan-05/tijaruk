@@ -167,7 +167,7 @@ export default function Services() {
         alt=""
         className="absolute inset-0 size-full object-cover object-center"
         fill
-        priority
+         loading="lazy"
         sizes="100vw"
         src={assets.servicesImage}
       />

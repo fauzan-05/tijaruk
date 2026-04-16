@@ -19,7 +19,7 @@ export default function About() {
               sizes="(max-width: 1024px) 100vw, 520px"
               src={assets.aboutImage}
               width={520}
-            />
+            loading="lazy" />
           </div>
         </div>
 

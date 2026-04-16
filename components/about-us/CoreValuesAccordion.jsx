@@ -2,6 +2,7 @@
 
 import { useEffect, useRef, useState } from "react";
 import Image from "next/image";
+import { ArrowIcon } from "../ui";
 
 function DesktopStackCard({ image, isFront, title }) {
   return (
@@ -20,7 +21,7 @@ function DesktopStackCard({ image, isFront, title }) {
           sizes="236px"
           src={image}
           width={212}
-        />
+        loading="lazy" />
       </div>
 
       <div className="flex flex-1 items-end justify-center px-4 text-center">
@@ -73,6 +74,20 @@ export default function CoreValuesAccordion({ values }) {
 
   const showNext = () => {
     rotateValues("next");
+  };
+
+  const stopCarouselButtonSwipe = (event) => {
+    event.stopPropagation();
+  };
+
+  const handlePreviousClick = (event) => {
+    event.stopPropagation();
+    showPrevious();
+  };
+
+  const handleNextClick = (event) => {
+    event.stopPropagation();
+    showNext();
   };
 
   const handlePointerDown = (event) => {
@@ -133,7 +148,7 @@ export default function CoreValuesAccordion({ values }) {
   };
 
   return (
-    <div className="mt-10 hidden lg:block">
+    <div className="mt-10 hidden md:block">
       <div
         className="relative mx-auto h-[356px] max-w-[920px] select-none touch-pan-y overflow-hidden py-8"
         onPointerDown={handlePointerDown}
@@ -142,6 +157,32 @@ export default function CoreValuesAccordion({ values }) {
         onTouchStart={handleTouchStart}
         onWheel={handleWheel}
       >
+        <button
+          aria-label="Previous core value"
+          className="absolute left-0 top-1/2 z-30 flex size-12 -translate-y-1/2 items-center justify-center rounded-full bg-[#5f0c66] text-white transition hover:bg-[#7a0c82]"
+          onClick={handlePreviousClick}
+          onPointerDown={stopCarouselButtonSwipe}
+          onPointerUp={stopCarouselButtonSwipe}
+          onTouchEnd={stopCarouselButtonSwipe}
+          onTouchStart={stopCarouselButtonSwipe}
+          type="button"
+        >
+          <ArrowIcon className="size-4 rotate-180" />
+        </button>
+
+        <button
+          aria-label="Next core value"
+          className="absolute right-0 top-1/2 z-30 flex size-12 -translate-y-1/2 items-center justify-center rounded-full bg-[#5f0c66] text-white transition hover:bg-[#7a0c82]"
+          onClick={handleNextClick}
+          onPointerDown={stopCarouselButtonSwipe}
+          onPointerUp={stopCarouselButtonSwipe}
+          onTouchEnd={stopCarouselButtonSwipe}
+          onTouchStart={stopCarouselButtonSwipe}
+          type="button"
+        >
+          <ArrowIcon className="size-4" />
+        </button>
+
         {values.map((value, index) => {
           const positionIndex = valueOrder.indexOf(index);
           const x = (positionIndex - (values.length - 1) / 2) * 110;

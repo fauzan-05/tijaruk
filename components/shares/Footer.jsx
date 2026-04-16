@@ -1,11 +1,13 @@
+"use client";
+
 import Link from "next/link";
 import Image from "next/image";
-import { assets, exploreLinks, socialLinks } from "../data";
+import { assets } from "../data";
 
 export default function Footer() {
   return (
     <footer className="bg-[#5f0c66] pb-24 pt-24 text-white">
-      <div className="mx-auto grid max-w-[1444px] grid-cols-2 gap-x-8 gap-y-14 px-4 sm:px-6 lg:grid-cols-[1.2fr_0.75fr_0.75fr] lg:px-10">
+      <div className="mx-auto grid max-w-[1444px] grid-cols-2 gap-x-8 gap-y-14 px-4 sm:px-6 lg:grid-cols-[1.2fr_0.75fr_0.75fr] lg:gap-x-6 lg:px-10">
         <div className="col-span-2 lg:col-span-1 lg:pl-10">
           <div className="relative -top-7 inline-block">
             <Image
@@ -36,33 +38,65 @@ export default function Footer() {
           </form>
         </div>
 
-        <div className="relative lg:left-64">
+        <div className="lg:justify-self-end">
           <div className="inline-block min-w-[120px]">
             <p className="whitespace-nowrap font-['Poppins',sans-serif] text-xl font-semibold text-[#e39b4d]">
               Follow Us
             </p>
             <ul className="mt-3 space-y-1 font-['Poppins',sans-serif] text-white/85">
-              {socialLinks.map((item) => (
-                <li key={item}>
-                  <a className="transition hover:text-white" href="#home">
-                    {item}
-                  </a>
-                </li>
-              ))}
+              <li>
+                <Link
+                  className="block transition hover:text-white"
+                  href="https://facebook.com"
+                  rel="noopener noreferrer"
+                  target="_blank"
+                >
+                  Facebook
+                </Link>
+              </li>
+              <li>
+                <Link
+                  className="block transition hover:text-white"
+                  href="https://instagram.com"
+                  rel="noopener noreferrer"
+                  target="_blank"
+                >
+                  Instagram
+                </Link>
+              </li>
+              <li>
+                <Link
+                  className="block transition hover:text-white"
+                  href="https://linkedin.com"
+                  rel="noopener noreferrer"
+                  target="_blank"
+                >
+                  LinkedIn
+                </Link>
+              </li>
+              <li>
+                <Link
+                  className="block transition hover:text-white"
+                  href="https://youtube.com"
+                  rel="noopener noreferrer"
+                  target="_blank"
+                >
+                  Youtube
+                </Link>
+              </li>
             </ul>
           </div>
         </div>
 
-        <div className="lg:pl-24">
+        <div>
             <p className="font-['Poppins',sans-serif] text-xl font-semibold text-[#e39b4d]">Explore</p>
           <ul className="mt-2 space-y-1 font-['Poppins',sans-serif] text-white/85">
-            {exploreLinks.map((item) => (
-              <li key={item.label}>
-                <Link className="transition hover:text-white" href={item.href}>
-                  {item.label}
-                </Link>
-              </li>
-            ))}
+            <li><Link className="block transition hover:text-white" href="/">Home</Link></li>
+            <li><Link className="block transition hover:text-white" href="/about">About Us</Link></li>
+            <li><Link className="block transition hover:text-white" href="/services">Services</Link></li>
+            <li><Link className="block transition hover:text-white" href="/contact">Contact Us</Link></li>
+            <li><Link className="block transition hover:text-white" href="/products">Products</Link></li>
+            <li><Link className="block transition hover:text-white" href="/sourcing">Sourcing</Link></li>
           </ul>
         </div>
       </div>

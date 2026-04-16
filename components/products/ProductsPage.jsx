@@ -34,7 +34,7 @@ export default function ProductsPage() {
             alt="Products hero"
             className="h-full w-full object-cover"
             fill
-            priority
+             loading="lazy"
             sizes="100vw"
             src={productsHero.image}
           />

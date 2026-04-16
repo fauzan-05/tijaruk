@@ -137,6 +137,7 @@ function SourcingFeatureSection({ section }) {
       className={`sourcing-feature-section ${sectionSpacingClass}`}
       data-section-id={section.id}
       data-reverse={section.reverse ? "true" : "false"}
+      id={section.id}
     >
       <div
         className={`mx-auto grid max-w-[1320px] gap-8 px-4 sm:px-6 lg:grid-cols-[minmax(0,0.92fr)_minmax(0,1fr)] lg:items-start lg:px-10 ${
@@ -151,7 +152,7 @@ function SourcingFeatureSection({ section }) {
             sizes="(max-width: 1024px) 100vw, 600px"
             src={section.image}
             width={640}
-          />
+          loading="lazy" />
         </div>
 
         <div className="sourcing-feature-copy lg:max-w-[620px]">
@@ -233,7 +234,7 @@ function HeroSection() {
                   alt="Business sourcing discussion"
                   className="sourcing-hero-media-image h-[290px] w-full object-cover sm:h-[390px] lg:h-[500px]"
                   height={500}
-                  priority
+                   loading="lazy"
                   sizes="(max-width: 1024px) 100vw, 50vw"
                   src={sourcingHero.imagePrimary}
                   width={680}
@@ -263,7 +264,7 @@ function HeroSection() {
                   sizes="(max-width: 1024px) 100vw, 500px"
                   src={sourcingHero.imageSecondary}
                   width={500}
-                />
+                loading="lazy" />
               </div>
 
               <div className="lg:ml-auto lg:max-w-[500px]">
@@ -294,17 +295,13 @@ function RFQSection() {
         className="absolute inset-0 size-full object-cover object-center opacity-[0.1]"
         fill
         sizes="100vw"
-        src="/sourcing/rfq-pattern.png"
-      />
+        src="/sourcing/rfq-pattern.webp"
+      loading="lazy" />
 
       <div className="relative mx-auto max-w-[1320px] px-4 sm:px-6 lg:px-10">
         <div className="mx-auto max-w-[720px] text-center text-white">
-          <h2 className="font-['Poppins',sans-serif] text-[1.9rem] font-semibold leading-tight sm:text-[2.3rem]">
-            {rfqFormContent.title}
-          </h2>
-          <p className="mt-4 font-['Poppins',sans-serif] text-[15px] leading-7 text-white/80 sm:text-[17px] sm:leading-8">
-            {rfqFormContent.description}
-          </p>
+        
+       
         </div>
 
         <div className="mt-10">

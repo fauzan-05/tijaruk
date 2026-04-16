@@ -94,7 +94,7 @@ export default function ContactPage() {
                   alt="Contact conversation"
                   className="h-[360px] w-full object-cover sm:h-[520px] lg:h-[681px]"
                   height={681}
-                  priority
+                   loading="lazy"
                   sizes="(max-width: 1024px) 100vw, 488px"
                   src={contactHero.image}
                   width={488}

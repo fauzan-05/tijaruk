@@ -50,8 +50,11 @@ function RemoteImage({
 
   return (
     <div
+      data-revealed={revealOrder ? "false" : "true"}
       {...frameRevealProps}
-      className={`relative overflow-hidden rounded-[14px] shadow-[0_24px_60px_rgba(34,0,37,0.12)] ${className}`}
+      className={`relative overflow-hidden rounded-[14px] shadow-none data-[revealed=true]:shadow-[0_24px_60px_rgba(34,0,37,0.12)] ${
+        revealOrder ? "opacity-0" : ""
+      } ${className}`}
     >
       <div {...imageRevealProps} className="absolute inset-0">
         <Image
@@ -59,7 +62,7 @@ function RemoteImage({
           className="object-cover"
           fill
           sizes="(max-width: 640px) 100vw, (max-width: 1024px) 45vw, 33vw"
-          priority={priority}
+           loading="lazy"
           src={src}
         />
       </div>
@@ -78,7 +81,7 @@ function ValueCard({ image, title }) {
           sizes="(max-width: 640px) 100vw, (max-width: 1280px) 50vw, 33vw"
           src={image}
           width={420}
-        />
+        loading="lazy" />
       </div>
       <div className="flex min-h-[108px] items-center justify-center px-5 py-6 text-center">
         <h3 className="font-ibrand text-[1.7rem] leading-[1.05] text-[#161616]">
@@ -156,6 +159,9 @@ export default function AboutPage() {
         const tl = gsap.timeline({
           defaults: { duration: 0.74, ease: "power2.out" },
           onComplete: () => {
+            frames.forEach((frame) => {
+              frame.dataset.revealed = "true";
+            });
             gsap.set(frames, { clearProps: "willChange" });
             gsap.set(images, { clearProps: "willChange" });
           },
@@ -242,7 +248,7 @@ export default function AboutPage() {
           alt=""
           className="absolute inset-0 size-full object-cover object-center opacity-45"
           fill
-          priority
+           loading="lazy"
           sizes="100vw"
           src={aboutHero.image}
         />
@@ -391,7 +397,7 @@ export default function AboutPage() {
 
           <div
             ref={coreValuesMobileRef}
-            className="relative mt-10 lg:hidden"
+            className="relative mt-10 md:hidden"
           >
             {coreValues.map((value, index) => (
               <div
@@ -412,7 +418,7 @@ export default function AboutPage() {
             <div className="h-[220px]" />
           </div>
 
-          <div className="hidden lg:block">
+          <div className="hidden md:block">
             <CoreValuesAccordion values={coreValues} />
           </div>
         </div>

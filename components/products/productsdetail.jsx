@@ -2,15 +2,10 @@
 
 import Link from "next/link";
 import Image from "next/image";
-import gsap from "gsap";
-import { ScrollTrigger } from "gsap/ScrollTrigger";
-import { useLayoutEffect, useRef, useState } from "react";
-import { createScrollTriggerRefresh } from "../animation/scrollTriggerRefresh";
+import { useEffect, useRef, useState } from "react";
 import Footer from "../shares/Footer";
 import Navbar from "../shares/Navbar";
 import ProductCard from "./ProductCard";
-
-gsap.registerPlugin(ScrollTrigger);
 
 function StarRating() {
   return (
@@ -88,13 +83,47 @@ export default function ProductDetailPage({ product, relatedProducts }) {
   const [unit, setUnit] = useState(product.units[0]);
   const [activeTab, setActiveTab] = useState("Product info");
   const [activeSourceMode, setActiveSourceMode] = useState(product.sourceModes[0]);
-  const detailPinRef = useRef(null);
+  const [activeImageIndex, setActiveImageIndex] = useState(0);
   const imageViewportRef = useRef(null);
-  const imageTrackRef = useRef(null);
   const relatedRef = useRef(null);
+  const activeImageIndexRef = useRef(0);
+  const imageItemRefs = useRef([]);
+  const scrollRafRef = useRef(null);
 
   const tabContent =
     activeTab === "Product info" ? product.infoText : product.descriptionText;
+
+  const syncActiveImageIndexFromScroll = () => {
+    const viewport = imageViewportRef.current;
+    if (!viewport || detailImages.length <= 1) return;
+
+    const center = viewport.scrollTop + viewport.clientHeight * 0.5;
+    let bestIndex = 0;
+    let bestDistance = Number.POSITIVE_INFINITY;
+
+    imageItemRefs.current.forEach((node, index) => {
+      if (!node) return;
+      const nodeCenter = node.offsetTop + node.offsetHeight * 0.5;
+      const distance = Math.abs(center - nodeCenter);
+      if (distance < bestDistance) {
+        bestDistance = distance;
+        bestIndex = index;
+      }
+    });
+
+    if (activeImageIndexRef.current !== bestIndex) {
+      activeImageIndexRef.current = bestIndex;
+      setActiveImageIndex(bestIndex);
+    }
+  };
+
+  const handleImageViewportScroll = () => {
+    if (scrollRafRef.current) return;
+    scrollRafRef.current = window.requestAnimationFrame(() => {
+      scrollRafRef.current = null;
+      syncActiveImageIndexFromScroll();
+    });
+  };
 
   const scrollRelated = (direction) => {
     const node = relatedRef.current;
@@ -109,63 +138,28 @@ export default function ProductDetailPage({ product, relatedProducts }) {
     });
   };
 
-  useLayoutEffect(() => {
-    if (detailImages.length <= 1) {
-      return undefined;
+  useEffect(() => {
+    activeImageIndexRef.current = 0;
+    setActiveImageIndex(0);
+
+    const viewport = imageViewportRef.current;
+    if (viewport) {
+      viewport.scrollTop = 0;
     }
 
-    const pinSection = detailPinRef.current;
-    const media = gsap.matchMedia();
-    const ctx = gsap.context(() => {
-
-      media.add("(min-width: 1024px)", () => {
-        const imageViewport = imageViewportRef.current;
-        const imageTrack = imageTrackRef.current;
-
-        if (!pinSection || !imageViewport || !imageTrack) {
-          return undefined;
-        }
-
-        const getScrollDistance = () =>
-          Math.max(0, imageTrack.scrollHeight - imageViewport.offsetHeight);
-
-        gsap.set(imageTrack, {
-          y: 0,
-          willChange: "transform",
-        });
-
-        const tween = gsap.to(imageTrack, {
-          y: () => -getScrollDistance(),
-          ease: "none",
-          scrollTrigger: {
-            trigger: pinSection,
-            start: "top top+=32",
-            end: () => `+=${getScrollDistance()}`,
-            scrub: 0.8,
-            pin: true,
-            anticipatePin: 1,
-            invalidateOnRefresh: true,
-          },
-        });
-
-        return () => {
-          tween.scrollTrigger?.kill();
-          tween.kill();
-          gsap.set(imageTrack, { clearProps: "transform,willChange" });
-        };
-      });
-
-      ScrollTrigger.refresh();
-    }, detailPinRef);
-
-    const cleanupRefresh = createScrollTriggerRefresh(ScrollTrigger, pinSection);
+    const raf = window.requestAnimationFrame(() => {
+      syncActiveImageIndexFromScroll();
+    });
 
     return () => {
-      cleanupRefresh();
-      media.revert();
-      ctx.revert();
+      window.cancelAnimationFrame(raf);
+      if (scrollRafRef.current) {
+        window.cancelAnimationFrame(scrollRafRef.current);
+      }
+      scrollRafRef.current = null;
     };
-  }, [detailImages.length, product.slug]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [product.slug]);
 
   return (
     <main className="min-h-screen overflow-x-hidden bg-[#f5f5f5] text-[#161616]">
@@ -174,30 +168,51 @@ export default function ProductDetailPage({ product, relatedProducts }) {
           <Navbar />
 
           <div
-            ref={detailPinRef}
             className="mt-10 grid gap-8 lg:grid-cols-[minmax(0,0.72fr)_minmax(0,1fr)] lg:items-start"
           >
-            <div
-              ref={imageViewportRef}
-              className="mx-auto w-full max-w-[560px] lg:mx-0 lg:h-[560px] lg:overflow-hidden"
-            >
-              <div ref={imageTrackRef} className="flex flex-col gap-5">
-                {detailImages.map((image, index) => (
-                  <div
-                    key={image}
-                    className="overflow-hidden rounded-[25px] shadow-[0_28px_70px_rgba(0,0,0,0.12)]"
-                  >
-                    <Image
-                      alt={index === 0 ? product.name : `${product.name} view ${index + 1}`}
-                      className="h-[280px] w-full object-cover sm:h-[400px] lg:h-[560px]"
-                      height={560}
-                      priority={index === 0}
-                      sizes="(max-width: 1024px) 100vw, 560px"
-                      src={image}
-                      width={560}
+            <div className="relative mx-auto w-full max-w-[560px] lg:sticky lg:top-24 lg:mx-0">
+              {detailImages.length > 1 ? (
+                <div
+                  aria-hidden="true"
+                  className="pointer-events-none absolute -left-6 top-1/2 hidden -translate-y-1/2 flex-col gap-2 lg:flex"
+                >
+                  {detailImages.map((_, index) => (
+                    <span
+                      key={index}
+                      className={`h-2 w-2 rounded-full transition ${
+                        index === activeImageIndex ? "bg-[#5f0c66]" : "bg-black/25"
+                      }`}
                     />
-                  </div>
-                ))}
+                  ))}
+                </div>
+              ) : null}
+
+              <div
+                ref={imageViewportRef}
+                className="w-full [scrollbar-width:none] [&::-webkit-scrollbar]:hidden lg:h-[560px] lg:overflow-y-auto"
+                onScroll={handleImageViewportScroll}
+              >
+                <div className="flex flex-col gap-5">
+                  {detailImages.map((image, index) => (
+                    <div
+                      key={image}
+                      ref={(node) => {
+                        imageItemRefs.current[index] = node;
+                      }}
+                      className="overflow-hidden rounded-[25px] shadow-[0_28px_70px_rgba(0,0,0,0.12)]"
+                    >
+                      <Image
+                        alt={index === 0 ? product.name : `${product.name} view ${index + 1}`}
+                        className="h-[280px] w-full object-cover sm:h-[400px] lg:h-[560px]"
+                        height={560}
+                         loading="lazy"
+                        sizes="(max-width: 1024px) 100vw, 560px"
+                        src={image}
+                        width={560}
+                      />
+                    </div>
+                  ))}
+                </div>
               </div>
             </div>
 
@@ -214,28 +229,7 @@ export default function ProductDetailPage({ product, relatedProducts }) {
                 ${product.detailPrice}
               </p>
 
-              <div className="mt-4 flex flex-wrap gap-2.5">
-                {product.sourceModes.map((mode, index) => {
-                  const isActive = activeSourceMode === mode;
 
-                  return (
-                    <button
-                      key={mode}
-                      className={`h-[46px] rounded-[28px] px-5 font-['Poppins',sans-serif] text-[13px] font-semibold transition ${
-                        isActive
-                          ? "bg-[#5f0c66] text-white"
-                          : index === 1
-                            ? "border-2 border-[#8b2ba5] bg-white text-[#6f2486]"
-                            : "bg-[#fcdeff] text-[#5f0c66]"
-                      }`}
-                      type="button"
-                      onClick={() => setActiveSourceMode(mode)}
-                    >
-                      {mode}
-                    </button>
-                  );
-                })}
-              </div>
 
               <p className="mt-4 font-['Poppins',sans-serif] text-[14px] text-[#6b6b6b]">
                 Enter minimum order upto {product.minimumOrder}
@@ -292,17 +286,23 @@ export default function ProductDetailPage({ product, relatedProducts }) {
                 </Link>
               </div>
 
-              <p className="mt-4 text-[0px]">
-                <span className="font-['Poppins',sans-serif] text-[16px] text-[#323232]">
-                  Categories:
-                </span>
-                <span className="font-['Poppins',sans-serif] text-[16px] text-[#323232]">
-                  {" "}
-                </span>
-                <span className="font-['Poppins',sans-serif] text-[16px] font-semibold text-[#191919]">
-                  {product.categoriesLabel}
-                </span>
-              </p>
+              <div className="mt-4 flex flex-wrap items-center gap-3">
+                <p className="font-['Poppins',sans-serif] text-[16px] text-[#323232]">
+                  <span>Categories:</span>{" "}
+                  <span className="font-semibold text-[#191919]">
+                    {product.categoriesLabel}
+                  </span>
+                </p>
+
+                <Link
+                  className="inline-flex h-[34px] items-center justify-center rounded-[999px] bg-[#fcdeff] px-4 font-['Poppins',sans-serif] text-[13px] font-medium text-black transition hover:bg-[#f7cfff]"
+                  href="/sourcing#domestic"
+                >
+                  Domestic Sourcing
+                </Link>
+              </div>
+
+              <div className="mt-6 h-px w-full bg-black/30" />
 
               <div className="mt-5 flex flex-wrap gap-2.5">
                 {["Product info", "Product description"].map((tab, index) => {
@@ -330,6 +330,8 @@ export default function ProductDetailPage({ product, relatedProducts }) {
               <p className="mt-4 max-w-[620px] font-['Poppins',sans-serif] text-[15px] leading-[26px] text-[#6b6b6b]">
                 {tabContent}
               </p>
+
+              <div className="mt-6 h-px w-full bg-black/30" />
 
               <div className="mt-5 flex flex-wrap gap-6 text-[#000000]">
                 <div className="flex items-center gap-2 font-['Poppins',sans-serif] text-[15px]">
@@ -373,7 +375,7 @@ export default function ProductDetailPage({ product, relatedProducts }) {
               className="mt-10 flex gap-5 overflow-x-auto pb-4 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
             >
               {relatedProducts.map((relatedProduct) => (
-                <div key={relatedProduct.slug} className="min-w-[320px] flex-1 lg:min-w-0">
+                <div key={relatedProduct.slug} className="min-w-[320px] flex-none">
                   <ProductCard compact product={relatedProduct} />
                 </div>
               ))}

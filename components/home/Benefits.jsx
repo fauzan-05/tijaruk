@@ -11,7 +11,7 @@ gsap.registerPlugin(ScrollTrigger);
 
 function BenefitCard({ title, icon }) {
   return (
-    <article className="relative overflow-hidden rounded-[18px] bg-white p-7 shadow-[0_20px_60px_rgba(26,15,44,0.12)] lg:min-h-[190px] lg:w-full">
+    <article className="relative h-full overflow-hidden rounded-[18px] bg-white p-7 shadow-[0_20px_60px_rgba(26,15,44,0.12)] lg:min-h-[190px] lg:w-full">
       <div className="relative flex h-full flex-col gap-7">
         <BenefitIcon type={icon} />
         <h3 className="max-w-[12ch] font-['Manrope',sans-serif] text-[1.05rem] font-bold leading-[1.45] text-[#5f0c66] sm:text-[1.15rem]">
@@ -125,7 +125,7 @@ export default function Benefits() {
             className="size-full object-cover"
             decoding="async"
             loading="lazy"
-            src="/sourcing/rfq-pattern.png"
+            src="/sourcing/rfq-pattern.webp"
           />
         </div>
 

@@ -105,8 +105,7 @@ export default function ProductCard({ product, compact = false, priority = false
             alt={product.name}
             className={imageClass}
             height={331}
-            loading={priority ? "eager" : undefined}
-            priority={priority}
+            loading="lazy"
             sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
             src={product.image}
             width={400}
@@ -120,7 +119,7 @@ export default function ProductCard({ product, compact = false, priority = false
             aria-hidden="true"
             className={`pointer-events-none absolute inset-0 z-10 opacity-0 ${imageClass}`}
             decoding="async"
-            loading="eager"
+            loading="lazy"
             src={hoverImage}
           />
         ) : null}

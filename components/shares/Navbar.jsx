@@ -71,7 +71,7 @@ export default function Navbar() {
                 <img
                   alt="Tijaruk"
                   className="h-10 max-w-[72px] object-contain sm:h-10 sm:max-w-[84px]"
-                  loading="eager"
+                  loading="lazy"
                   src={assets.logo}
                 />
               </Link>

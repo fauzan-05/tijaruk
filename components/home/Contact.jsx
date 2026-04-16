@@ -21,7 +21,7 @@ export default function Contact() {
               className="size-full object-cover"
               decoding="async"
               loading="lazy"
-              src="/sourcing/rfq-pattern.png"
+              src="/sourcing/rfq-pattern.webp"
             />
           </div>
 

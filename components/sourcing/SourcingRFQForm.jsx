@@ -13,24 +13,7 @@ export default function SourcingRFQForm() {
       className="mx-auto w-full max-w-[820px] rounded-[16px] bg-white p-5 shadow-[0_28px_80px_rgba(36,0,42,0.22)] sm:p-8"
       onSubmit={(event) => event.preventDefault()}
     >
-      <div className="mx-auto flex w-full max-w-[290px] rounded-[8px] bg-[#f1f2f6] p-1">
-        {tabs.map((tab) => {
-          const isActive = mode === tab;
-
-          return (
-            <button
-              key={tab}
-              className={`flex-1 rounded-[6px] px-4 py-2.5 font-['Poppins',sans-serif] text-sm font-semibold transition ${
-                isActive ? "bg-[#5f0c66] text-white" : "text-[#2d2d2d]"
-              }`}
-              type="button"
-              onClick={() => setMode(tab)}
-            >
-              {tab}
-            </button>
-          );
-        })}
-      </div>
+   
 
       <div className="mt-8 grid gap-4 sm:grid-cols-2">
         <label className="block sm:col-span-1">

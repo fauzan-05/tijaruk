@@ -16,7 +16,7 @@ function TestimonialCard({ name, role, quote, className = "" }) {
           className="size-full object-cover"
           decoding="async"
           loading="lazy"
-          src="/sourcing/rfq-pattern.png"
+          src="/sourcing/rfq-pattern.webp"
         />
       </div>
 
@@ -28,7 +28,7 @@ function TestimonialCard({ name, role, quote, className = "" }) {
           sizes="58px"
           src={assets.testimonialAvatar}
           width={58}
-        />
+        loading="lazy" />
         <h3 className="min-h-[2.5rem] font-['Manrope',sans-serif] text-[1.05rem] font-bold leading-tight text-white">
           {name}
         </h3>

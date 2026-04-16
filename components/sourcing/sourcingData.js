@@ -3,8 +3,8 @@ export const sourcingHero = {
   title: `Lorem ipsum dolor sit amet
 consectetur. Est cursus sed id sit
 augue dictumst quis enim congue.`,
-  imagePrimary: "/sourcing/hero-primary.jpg",
-  imageSecondary: "/sourcing/hero-secondary.jpg",
+  imagePrimary: "/sourcing/hero-primary.webp",
+  imageSecondary: "/sourcing/hero-secondary.webp",
   cardTitle: "Lorem ipsum dolor sit am",
   cardDescription:
     "Share your sourcing need once and we help translate it into a clear request suppliers can respond to quickly.",
@@ -19,7 +19,7 @@ export const sourcingSections = [
     title: "Domestic Sourcing",
     subtitle: "Local suppliers for faster delivery and reduced complexity",
     tone: "plum",
-    image: "/sourcing/domestic.jpg",
+    image: "/sourcing/domestic.webp",
     imageAlt: "Domestic supplier collaboration in a workshop",
     features: [
       {
@@ -53,7 +53,7 @@ export const sourcingSections = [
     title: "International Sourcing",
     subtitle: "Global suppliers for competitive pricing and unique products",
     tone: "amber",
-    image: "/sourcing/international.jpg",
+    image: "/sourcing/international.webp",
     imageAlt: "International sourcing strategy session with digital network overlay",
     reverse: true,
     features: [
