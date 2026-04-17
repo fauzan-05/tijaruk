@@ -59,33 +59,31 @@ export default function ServicesPage() {
 
     const ctx = gsap.context(() => {
       const cards = gsap.utils.toArray(".service-stack-card", stack);
+      const lastCard = cards[cards.length - 1];
+
+      if (!cards.length) return;
 
       cards.forEach((card, index) => {
         gsap.set(card, {
           backfaceVisibility: "hidden",
           force3D: true,
-          position: "relative",
           transformOrigin: "center top",
           willChange: "transform",
           zIndex: index + 1,
         });
 
-        if (index === cards.length - 1) return;
-        const nextCard = cards[index + 1];
-
-        ScrollTrigger.create({
+        const trigger = ScrollTrigger.create({
           anticipatePin: 1,
-          end: "bottom bottom+=1",
-          endTrigger: nextCard,
-          fastScrollEnd: true,
+          end: "bottom top",
+          endTrigger: lastCard,
           invalidateOnRefresh: true,
           pin: true,
           pinSpacing: false,
-          preventOverlaps: "services-stack",
-          refreshPriority: -index,
-          start: "bottom bottom",
+          start: "top top",
           trigger: card,
         });
+
+        ctx.add(() => trigger.kill());
       });
     }, stack);
 
@@ -101,10 +99,10 @@ export default function ServicesPage() {
     <main className="min-h-screen overflow-x-hidden bg-[#f5f5f5] text-[#141414]">
       <ServicesHero />
 
-i      <section className="px-4 pb-16 sm:px-6 lg:px-10 lg:pb-24">
+      <section className="px-4 pb-16 sm:px-6 lg:px-10 lg:pb-24">
         <div ref={stackRef} className="mx-auto flex max-w-[1440px] flex-col gap-8">
           {serviceSections.map((service) => (
-            <div key={service.id} className="service-stack-card">
+            <div key={service.id} className="service-stack-card min-h-screen">
               <ServiceSection service={service} />
             </div>
           ))}

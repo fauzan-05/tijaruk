@@ -1,6 +1,7 @@
 export const assets = {
   logo: "/tijaruk-logo.svg",
   heroImage: "/home-images/hero-image.webp",
+  heroVideo: "/home-images/herovideo.webm",
   aboutImage: "/home-images/about-image.webp",
   servicesImage: "/home-images/services-image.webp",
   doodlePattern: "/home-images/doodle-pattern.svg",

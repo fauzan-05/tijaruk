@@ -34,10 +34,22 @@ export default function ProductsPage() {
             alt="Products hero"
             className="h-full w-full object-cover"
             fill
-             loading="lazy"
             sizes="100vw"
             src={productsHero.image}
           />
+          {productsHero.video ? (
+            <video
+              autoPlay
+              loop
+              muted
+              playsInline
+              poster={productsHero.image}
+              className="motion-reduce:hidden absolute inset-0 h-full w-full object-cover"
+              preload="metadata"
+            >
+              <source src={productsHero.video} type="video/webm" />
+            </video>
+          ) : null}
         </div>
         <div className="absolute inset-0 bg-[linear-gradient(90deg,rgba(95,12,102,0.92)_0%,rgba(128,0,139,0.62)_58%,rgba(34,0,37,0.18)_100%)]" />
 

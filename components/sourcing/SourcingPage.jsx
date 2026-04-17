@@ -213,8 +213,48 @@ function AdvantageList() {
 }
 
 function HeroSection() {
+  const sectionRef = useRef(null);
+
+  useLayoutEffect(() => {
+    if (!sectionRef.current) return undefined;
+
+    if (window.matchMedia?.("(prefers-reduced-motion: reduce)")?.matches) {
+      return undefined;
+    }
+
+    const ctx = gsap.context(() => {
+      const images = gsap.utils.toArray(".sourcing-hero-media-image", sectionRef.current);
+      if (!images.length) return;
+
+      gsap.set(images, {
+        autoAlpha: 0,
+        willChange: "opacity,filter",
+        filter: "blur(10px)",
+      });
+
+      gsap.to(images, {
+        autoAlpha: 1,
+        filter: "blur(0px)",
+        duration: 1.25,
+        ease: "power2.out",
+        stagger: 0.24,
+        scrollTrigger: {
+          trigger: sectionRef.current,
+          start: "top 75%",
+          toggleActions: "play none none none",
+          once: true,
+        },
+        onComplete: () => {
+          gsap.set(images, { clearProps: "willChange,filter" });
+        },
+      });
+    }, sectionRef);
+
+    return () => ctx.revert();
+  }, []);
+
   return (
-    <section className="px-4 pb-10 pt-8 sm:px-6 lg:px-10 lg:pb-16">
+    <section ref={sectionRef} className="px-4 pb-10 pt-8 sm:px-6 lg:px-10 lg:pb-16">
       <div className="mx-auto max-w-[1440px]">
         <Navbar />
 

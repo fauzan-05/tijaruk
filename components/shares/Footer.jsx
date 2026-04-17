@@ -7,8 +7,8 @@ import { assets } from "../data";
 export default function Footer() {
   return (
     <footer className="bg-[#5f0c66] pb-24 pt-24 text-white">
-      <div className="mx-auto grid max-w-[1444px] grid-cols-2 gap-x-8 gap-y-14 px-4 sm:px-6 lg:grid-cols-[1.2fr_0.75fr_0.75fr] lg:gap-x-6 lg:px-10">
-        <div className="col-span-2 lg:col-span-1 lg:pl-10">
+      <div className="mx-auto grid max-w-[1444px] grid-cols-2 gap-x-8 gap-y-14 px-4 sm:px-6 md:grid-cols-[1.2fr_0.75fr_0.75fr] md:gap-x-6 lg:px-10">
+        <div className="col-span-2 md:col-span-1 lg:pl-10">
           <div className="relative -top-7 inline-block">
             <Image
               alt="Tijaruk"
@@ -38,7 +38,7 @@ export default function Footer() {
           </form>
         </div>
 
-        <div className="lg:justify-self-end">
+        <div className="md:justify-self-end">
           <div className="inline-block min-w-[120px]">
             <p className="whitespace-nowrap font-['Poppins',sans-serif] text-xl font-semibold text-[#e39b4d]">
               Follow Us

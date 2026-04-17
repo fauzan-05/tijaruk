@@ -2,6 +2,7 @@ export const productsHero = {
   title: "Products",
   description:
     "Explore export-ready essentials and industrial goods sourced through TIJARUK's trusted supplier network.",
+  video: "/products/producthero.webm",
   image: "/products/hero.webp",
 };
 
@@ -18,6 +19,8 @@ export const productCategories = [
 const PRODUCT_DETAIL_CAPTION =
   "Lorem ipsum dolor sit amet consectetur. Interdum facilisis sollicitudin malesuada commodo. Sed sit nec nunc fermentum sed diam in viverra pellentesque. Tincidunt odio aliquet .";
 
+const PRODUCT_CARD_CAPTION = PRODUCT_DETAIL_CAPTION;
+
 export const productCards = [
   {
     name: "Rice",
@@ -26,8 +29,7 @@ export const productCards = [
     hoverImage: "/products/rice02.webp",
     galleryImages: ["/products/rice02.webp", "/oredrnow/rice03.webp"],
     category: "Food & Agriculture",
-    description:
-      "Premium long-grain rice sourced for wholesale buyers who need consistency, export-grade packing, and dependable supply planning.",
+    description: PRODUCT_CARD_CAPTION,
     price: "3.44 USD",
     reviews: 146,
     detailPrice: "14.36 USD",
@@ -47,8 +49,7 @@ export const productCards = [
     hoverImage: "/products/spices02.webp",
     galleryImages: ["/products/spices02.webp", "/oredrnow/spices03.webp"],
     category: "Food & Agriculture",
-    description:
-      "Aromatic spice selections prepared for retail, foodservice, and bulk trade with traceable sourcing and competitive pricing.",
+    description: PRODUCT_CARD_CAPTION,
     price: "5.34 USD",
     reviews: 146,
     detailPrice: "5.34 USD",
@@ -68,8 +69,7 @@ export const productCards = [
     hoverImage: "/products/switces02.webp",
     galleryImages: ["/products/switces02.webp", "/oredrnow/switces03.webp"],
     category: "Electrical",
-    description:
-      "Durable electrical switches and related components for project supply, distribution channels, and repeat procurement cycles.",
+    description: PRODUCT_CARD_CAPTION,
     price: "3.44 USD",
     reviews: 146,
     detailPrice: "16.44 USD",
@@ -89,8 +89,7 @@ export const productCards = [
     hoverImage: "/products/vegitableoil02.webp",
     galleryImages: ["/products/vegitableoil02.webp", "/oredrnow/vegitableoil03.webp"],
     category: "Food & Agriculture",
-    description:
-      "Wholesale vegetable oil options with strong shelf presence, scalable volumes, and supplier coordination for import or local trade.",
+    description: PRODUCT_CARD_CAPTION,
     price: "3.44 USD",
     reviews: 146,
     detailPrice: "11.24 USD",
@@ -110,8 +109,7 @@ export const productCards = [
     hoverImage: "/products/steel02.webp",
     galleryImages: ["/products/steel02.webp", "/oredrnow/steel03.webp"],
     category: "Industrial Materials",
-    description:
-      "Construction and fabrication-grade steel rods supplied with practical sourcing support, clearer specifications, and faster follow-up.",
+    description: PRODUCT_CARD_CAPTION,
     price: "8.44 USD",
     reviews: 146,
     detailPrice: "8.44 USD",
@@ -131,8 +129,7 @@ export const productCards = [
     hoverImage: "/products/fabrics02.webp",
     galleryImages: ["/products/fabrics02.webp", "/oredrnow/fabrics03.webp"],
     category: "Textiles",
-    description:
-      "Commercial fabric selections suitable for apparel, interiors, and private-label sourcing with flexible order planning.",
+    description: PRODUCT_CARD_CAPTION,
     price: "3.44 USD",
     reviews: 146,
     detailPrice: "6.84 USD",
@@ -152,8 +149,7 @@ export const productCards = [
     hoverImage: "/products/pipe02.webp",
     galleryImages: ["/products/pipe02.webp", "/oredrnow/pipe03.webp"],
     category: "Industrial Materials",
-    description:
-      "Pipe and tubing products sourced for infrastructure, maintenance, and industrial demand with quality-focused supplier vetting.",
+    description: PRODUCT_CARD_CAPTION,
     price: "3.44 USD",
     reviews: 146,
     detailPrice: "7.92 USD",
@@ -173,8 +169,7 @@ export const productCards = [
     hoverImage: "/products/spare02.webp",
     galleryImages: ["/products/spare02.webp", "/oredrnow/spare03.webp"],
     category: "Automotive",
-    description:
-      "Machined and replacement spare parts for ongoing operations, resale, and procurement programs that require reliable repeat supply.",
+    description: PRODUCT_CARD_CAPTION,
     price: "3.54 USD",
     reviews: 146,
     detailPrice: "3.54 USD",
@@ -194,8 +189,7 @@ export const productCards = [
     hoverImage: "/products/chemicals02.webp",
     galleryImages: ["/products/chemicals02.webp", "/oredrnow/chemicals03.webp"],
     category: "Chemicals",
-    description:
-      "Commercial cleaning and maintenance chemical lines prepared for wholesale distribution, facilities use, and market rollout.",
+    description: PRODUCT_CARD_CAPTION,
     price: "3.44 USD",
     reviews: 146,
     detailPrice: "4.72 USD",
