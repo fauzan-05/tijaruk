@@ -72,18 +72,30 @@ export default function ServicesPage() {
           zIndex: index + 1,
         });
 
-        const trigger = ScrollTrigger.create({
+        ScrollTrigger.create({
           anticipatePin: 1,
           end: "bottom top",
           endTrigger: lastCard,
           invalidateOnRefresh: true,
           pin: true,
-          pinSpacing: false,
+          pinSpacing: index === cards.length - 1, // Only add gap for the last card to prevent footer overlap
           start: "top top",
           trigger: card,
         });
 
-        ctx.add(() => trigger.kill());
+        if (index > 0) {
+          // Fade out the previous card as the new one overlaps it
+          // This hides shadows and unaligned borders, giving the impression of replaced "single cards"
+          gsap.to(cards[index - 1], {
+            opacity: 0,
+            scrollTrigger: {
+              trigger: card,
+              start: "top center", // Starts fading out when new card reaches the middle of the screen
+              end: "top top",      // Fully faded out when the new card reaches the top
+              scrub: true,
+            },
+          });
+        }
       });
     }, stack);
 

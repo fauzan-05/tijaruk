@@ -180,7 +180,8 @@ function ServiceSectionBase({ service }, ref) {
           sizes="(max-width: 1024px) 100vw, 1333px"
           src={service.image}
           width={1333}
-        loading="lazy" />
+          priority={true}
+        />
       </div>
     </article>
   );
