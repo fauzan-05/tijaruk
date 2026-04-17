@@ -23,30 +23,7 @@ export default function Navbar() {
     return normalizedPath === href || normalizedPath.startsWith(`${href}/`);
   };
 
-  const navigateWithPreloader = (href) => (event) => {
-    if (
-      event.button !== 0 ||
-      event.metaKey ||
-      event.ctrlKey ||
-      event.shiftKey ||
-      event.altKey
-    ) {
-      return;
-    }
-
-    if (isActiveLink(href)) {
-      setIsMenuOpen(false);
-      return;
-    }
-
-    event.preventDefault();
-    setIsMenuOpen(false);
-    window.dispatchEvent(new Event("tijaruk:show-preloader"));
-
-    window.setTimeout(() => {
-      router.push(href);
-    }, 650);
-  };
+  const closeMenu = () => setIsMenuOpen(false);
 
   useEffect(() => {
     setIsMounted(true);
@@ -67,7 +44,7 @@ export default function Navbar() {
         <header className="relative z-[2147483646] w-full rounded-[6px] bg-[#5f0c66] px-4 py-1 shadow-[0_16px_45px_rgba(0,0,0,0.18)] sm:px-5 lg:px-7">
           <div className="flex items-center justify-between gap-4">
             <div className="shrink-0">
-              <Link href="/" prefetch onClick={navigateWithPreloader("/")}>
+              <Link href="/" prefetch onClick={closeMenu}>
                 <img
                   alt="Tijaruk"
                   className="h-10 max-w-[72px] object-contain sm:h-10 sm:max-w-[84px]"
@@ -87,7 +64,7 @@ export default function Navbar() {
                     className="group relative inline-flex h-8 items-center justify-center leading-none text-white/90 transition hover:text-white"
                     href={item.href}
                     prefetch
-                    onClick={navigateWithPreloader(item.href)}
+                    onClick={closeMenu}
                   >
                     {item.label}
                     <span
@@ -109,7 +86,7 @@ export default function Navbar() {
                 }`}
                 href="/contact"
                 prefetch
-                onClick={navigateWithPreloader("/contact")}
+                onClick={closeMenu}
               >
                 Contact Us
               </Link>
@@ -162,7 +139,7 @@ export default function Navbar() {
                     className="rounded-[5px] px-2 py-2 text-white/90 transition hover:bg-white/10 hover:text-white"
                     href={item.href}
                     prefetch
-                    onClick={navigateWithPreloader(item.href)}
+                    onClick={closeMenu}
                   >
                     {item.label}
                   </Link>
@@ -171,7 +148,7 @@ export default function Navbar() {
                   className="mt-2 inline-flex h-10 items-center justify-center rounded-[5px] bg-white px-4 font-['Poppins',sans-serif] text-sm font-semibold leading-none text-[#5f0c66] transition hover:bg-[#f5d4a8]"
                   href="/contact"
                   prefetch
-                  onClick={navigateWithPreloader("/contact")}
+                  onClick={closeMenu}
                 >
                   Contact Us
                 </Link>

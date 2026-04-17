@@ -7,7 +7,6 @@ export default function Preloader() {
   const pathname = usePathname();
   const hideTimerRef = useRef(null);
   const removeTimerRef = useRef(null);
-  const manualNavigationRef = useRef(false);
   const [isHidden, setIsHidden] = useState(false);
   const [isRemoved, setIsRemoved] = useState(false);
 
@@ -52,31 +51,12 @@ export default function Preloader() {
 
 
   useEffect(() => {
-    if (manualNavigationRef.current) {
-      manualNavigationRef.current = false;
-      scheduleHide(650);
-      return undefined;
-    }
-
     startPreloader();
 
     return () => {
       clearPreloaderTimers();
     };
-  }, [clearPreloaderTimers, pathname, scheduleHide, startPreloader]);
-
-  useEffect(() => {
-    const handleManualPreloader = () => {
-      manualNavigationRef.current = true;
-      startPreloader({ autoHide: false });
-    };
-
-    window.addEventListener("tijaruk:show-preloader", handleManualPreloader);
-
-    return () => {
-      window.removeEventListener("tijaruk:show-preloader", handleManualPreloader);
-    };
-  }, [startPreloader]);
+  }, [clearPreloaderTimers, startPreloader]);
 
   if (isRemoved) {
     return null;
