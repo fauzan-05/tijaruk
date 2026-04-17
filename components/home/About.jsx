@@ -1,17 +1,69 @@
+"use client";
+
+import { useLayoutEffect, useRef } from "react";
+import gsap from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
 import Image from "next/image";
 import { assets } from "../data";
 import { ArrowIcon, SectionTag } from "../ui";
 
+gsap.registerPlugin(ScrollTrigger);
+
 export default function About() {
+  const sectionRef = useRef(null);
+  const imageRef = useRef(null);
+  const contentRef = useRef(null);
+
+  useLayoutEffect(() => {
+    const ctx = gsap.context(() => {
+      // Animate Image
+      gsap.fromTo(
+        imageRef.current,
+        { opacity: 0, y: 20 },
+        {
+          opacity: 1,
+          y: 0,
+          duration: 1.8, // Slower animation
+          ease: "power3.out",
+          scrollTrigger: {
+            trigger: sectionRef.current,
+            start: "top 50%", // Triggers at halfway point
+            once: true,
+          },
+        }
+      );
+
+      // Animate Content
+      gsap.fromTo(
+        contentRef.current,
+        { opacity: 0, y: 20 },
+        {
+          opacity: 1,
+          y: 0,
+          duration: 1.8, // Slower animation
+          delay: 0.3, 
+          ease: "power3.out",
+          scrollTrigger: {
+            trigger: sectionRef.current,
+            start: "top 50%", // Triggers at halfway point
+            once: true,
+          },
+        }
+      );
+    }, sectionRef);
+
+    return () => ctx.revert();
+  }, []);
+
   return (
-    <section id="about" className="bg-[#f7f3ef] py-12 sm:py-14 lg:h-screen lg:py-0">
+    <section ref={sectionRef} id="about" className="bg-[#f7f3ef] py-12 sm:py-14 lg:h-screen lg:py-0">
       <div className="mx-auto grid max-w-[1440px] gap-8 px-4 sm:px-6 lg:h-screen lg:grid-cols-[minmax(320px,0.88fr)_minmax(0,1fr)] lg:items-center lg:gap-8 lg:px-10">
         <div>
           <SectionTag className="-translate-y-2 flex items-center gap-4 font-ibrand text-[1.65rem] font-medium normal-case tracking-[0.04em] !text-[#5f0c66] sm:text-[1.95rem] lg:text-[2.05rem]">
             <span className="size-[14px] rounded-full bg-[#5f0c66] sm:size-4" />
             <span className="translate-x-4">About Tijaruk</span>
           </SectionTag>
-          <div className="mt-4 overflow-hidden rounded-[12px] shadow-[0_24px_55px_rgba(0,0,0,0.12)] lg:max-w-[520px]">
+          <div ref={imageRef} className="mt-4 overflow-hidden rounded-[12px] shadow-[0_24px_55px_rgba(0,0,0,0.12)] lg:max-w-[520px]">
             <Image
               alt="Team working together"
               className="h-[410px] w-full object-cover"
@@ -23,7 +75,7 @@ export default function About() {
           </div>
         </div>
 
-        <div className="flex w-full max-w-[620px] flex-col items-start justify-center lg:justify-self-start">
+        <div ref={contentRef} className="flex w-full max-w-[620px] flex-col items-start justify-center lg:justify-self-start">
           <h2 className="w-full font-ibrand text-[2rem] font-medium leading-[1.12] text-[#333333] sm:text-[2.55rem] lg:text-[2.9rem]">
             <span className="block">We are your complete</span>
             <span className="mt-2 block">trade and growth partner.</span>

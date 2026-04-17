@@ -16,6 +16,10 @@ export const viewport = {
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
+      <head>
+        <link rel="preconnect" href="https://www.google.com" />
+        <link rel="preconnect" href="https://maps.gstatic.com" />
+      </head>
       <body>
         <Preloader />
         {children}

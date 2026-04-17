@@ -227,25 +227,23 @@ function HeroSection() {
       if (!images.length) return;
 
       gsap.set(images, {
-        autoAlpha: 0,
-        willChange: "opacity,filter",
-        filter: "blur(10px)",
+        opacity: 0,
+        y: 20,
+        force3D: true,
+        willChange: "transform, opacity",
       });
 
       gsap.to(images, {
-        autoAlpha: 1,
-        filter: "blur(0px)",
-        duration: 1.25,
-        ease: "power2.out",
-        stagger: 0.24,
+        opacity: 1,
+        y: 0,
+        duration: 1.8,
+        ease: "power3.out",
+        stagger: 0.3,
         scrollTrigger: {
           trigger: sectionRef.current,
-          start: "top 75%",
+          start: "top 80%",
           toggleActions: "play none none none",
           once: true,
-        },
-        onComplete: () => {
-          gsap.set(images, { clearProps: "willChange,filter" });
         },
       });
     }, sectionRef);
@@ -410,11 +408,10 @@ export default function SourcingPage() {
         });
 
         if (image && imageInner) {
-          tl.fromTo(
+          tl.to(
             image,
-            { autoAlpha: 0 },
-            { autoAlpha: 1, duration: 0.05, ease: "none" },
-            0
+            { autoAlpha: 1, duration: 0.8, ease: "power2.out" },
+            0.3 // Delay fade-in so box isn't empty when it appears
           ).to(
             imageInner,
             {

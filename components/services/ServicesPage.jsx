@@ -79,7 +79,8 @@ export default function ServicesPage() {
           invalidateOnRefresh: true,
           pin: true,
           pinSpacing: index === cards.length - 1, // Only add gap for the last card to prevent footer overlap
-          start: "top top",
+          start: () =>
+            card.offsetHeight > window.innerHeight ? "bottom bottom" : "top top",
           trigger: card,
         });
 
@@ -90,8 +91,8 @@ export default function ServicesPage() {
             opacity: 0,
             scrollTrigger: {
               trigger: card,
-              start: "top center", // Starts fading out when new card reaches the middle of the screen
-              end: "top top",      // Fully faded out when the new card reaches the top
+              start: "top 40%", // Starts fading out later to allow full view
+              end: "top 10%",      // Fully faded out just before reaching the top
               scrub: true,
             },
           });
@@ -112,9 +113,14 @@ export default function ServicesPage() {
       <ServicesHero />
 
       <section className="px-4 pb-16 sm:px-6 lg:px-10 lg:pb-24">
-        <div ref={stackRef} className="mx-auto flex max-w-[1440px] flex-col gap-8">
-          {serviceSections.map((service) => (
-            <div key={service.id} className="service-stack-card min-h-screen">
+        <div ref={stackRef} className="mx-auto flex max-w-[1440px] flex-col">
+          {serviceSections.map((service, index) => (
+            <div
+              key={service.id}
+              className={`service-stack-card min-h-screen ${
+                index !== serviceSections.length - 1 ? "mb-[100vh]" : ""
+              }`}
+            >
               <ServiceSection service={service} />
             </div>
           ))}

@@ -118,11 +118,11 @@ export default function ContactPage() {
             ))}
           </section>
 
-          <section className="mt-8 overflow-hidden rounded-[4px] border border-[#dedede] bg-white">
+          <section className="mt-8 overflow-hidden rounded-[4px] border border-[#dedede] bg-[#f0f0f0]">
             <iframe
               aria-label="Tijaruk office location on Google Maps"
               className="h-[320px] w-full border-0 sm:h-[420px] lg:h-[681px]"
-              loading="lazy"
+              loading="eager"
               referrerPolicy="no-referrer-when-downgrade"
               src={contactHero.mapEmbedUrl}
               title="Tijaruk office location on Google Maps"
