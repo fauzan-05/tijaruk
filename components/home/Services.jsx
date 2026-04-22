@@ -48,12 +48,12 @@ const serviceCardCopy = {
 };
 
 const serviceCardAsteriskPositions = {
-  "01": "right-[-14px] top-[-10px] size-[110px] sm:right-[-16px] sm:top-[-12px] sm:size-[136px] lg:right-[-18px] lg:top-[-12px] lg:size-[172px]",
-  "02": "left-[-14px] top-[-10px] size-[110px] sm:left-[-16px] sm:top-[-12px] sm:size-[136px] lg:left-[-18px] lg:top-[-12px] lg:size-[172px]",
-  "03": "right-[-14px] top-[-10px] size-[110px] sm:right-[-16px] sm:top-[-12px] sm:size-[136px] lg:right-[-18px] lg:top-[-12px] lg:size-[172px]",
-  "04": "left-[-18px] bottom-[-18px] size-[116px] sm:left-[-20px] sm:bottom-[-20px] sm:size-[140px] lg:left-[-24px] lg:bottom-[-24px] lg:size-[176px]",
-  "05": "right-[-18px] bottom-[-18px] size-[116px] sm:right-[-20px] sm:bottom-[-20px] sm:size-[140px] lg:right-[-24px] lg:bottom-[-24px] lg:size-[176px]",
-  "06": "left-[-18px] bottom-[-18px] size-[116px] sm:left-[-20px] sm:bottom-[-20px] sm:size-[140px] lg:left-[-24px] lg:bottom-[-24px] lg:size-[176px]",
+  "01": "right-[-6px] top-[-6px] size-[68px] sm:right-[-8px] sm:top-[-8px] sm:size-[86px] lg:right-[-10px] lg:top-[-10px] lg:size-[114px]",
+  "02": "left-[-6px] top-[-6px] size-[68px] sm:left-[-8px] sm:top-[-8px] sm:size-[86px] lg:left-[-10px] lg:top-[-10px] lg:size-[114px]",
+  "03": "right-[-6px] top-[-6px] size-[68px] sm:right-[-8px] sm:top-[-8px] sm:size-[86px] lg:right-[-10px] lg:top-[-10px] lg:size-[114px]",
+  "04": "left-[-8px] bottom-[-8px] size-[74px] sm:left-[-10px] sm:bottom-[-10px] sm:size-[92px] lg:left-[-12px] lg:bottom-[-12px] lg:size-[124px]",
+  "05": "right-[-8px] bottom-[-8px] size-[74px] sm:right-[-10px] sm:bottom-[-10px] sm:size-[92px] lg:right-[-12px] lg:bottom-[-12px] lg:size-[124px]",
+  "06": "left-[-8px] bottom-[-8px] size-[74px] sm:left-[-10px] sm:bottom-[-10px] sm:size-[92px] lg:left-[-12px] lg:bottom-[-12px] lg:size-[124px]",
 };
 
 function ServiceCard({ id, positionClassName }) {
@@ -67,7 +67,7 @@ function ServiceCard({ id, positionClassName }) {
       className={[
         "service-what-card absolute overflow-hidden rounded-none",
         positionClassName,
-        "h-[172px] w-[239px] sm:h-[206px] sm:w-[274px] lg:h-[314px] lg:w-[353px]",
+        "h-[168px] w-[234px] sm:h-[202px] sm:w-[268px] lg:h-[308px] lg:w-[346px]",
         isLight
           ? "bg-white text-black"
           : "bg-[#5f0c66] text-white",
