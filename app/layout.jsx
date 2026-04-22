@@ -1,5 +1,6 @@
 import "./globals.css";
 import Preloader from "../components/preloader/Preloader";
+import SmoothScrolling from "../components/shares/SmoothScrolling";
 
 export const metadata = {
   title: "Tijaruk - Your Complete Trade & Growth Partner",
@@ -21,8 +22,10 @@ export default function RootLayout({ children }) {
         <link rel="preconnect" href="https://maps.gstatic.com" />
       </head>
       <body>
-        <Preloader />
-        {children}
+        <SmoothScrolling>
+          <Preloader />
+          {children}
+        </SmoothScrolling>
       </body>
     </html>
   );

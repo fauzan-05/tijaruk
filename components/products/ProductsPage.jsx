@@ -1,7 +1,7 @@
 "use client";
 
 import Image from "next/image";
-import { useDeferredValue, useState } from "react";
+import { useDeferredValue, useEffect, useState } from "react";
 import Footer from "../shares/Footer";
 import Navbar from "../shares/Navbar";
 import { productCards, productCategories, productsHero } from "./productsData";
@@ -12,7 +12,12 @@ export default function ProductsPage() {
   const [searchTerm, setSearchTerm] = useState("");
   const [activeCategory, setActiveCategory] = useState("All");
   const [isFilterOpen, setIsFilterOpen] = useState(false);
+  const [isMounted, setIsMounted] = useState(false);
   const deferredSearch = useDeferredValue(searchTerm);
+
+  useEffect(() => {
+    setIsMounted(true);
+  }, []);
 
   const filteredProducts = productCards.filter((product) => {
     const matchesCategory =
@@ -37,7 +42,7 @@ export default function ProductsPage() {
             sizes="100vw"
             src={productsHero.image}
           />
-          {productsHero.video ? (
+          {isMounted && productsHero.video && (
             <video
               autoPlay
               loop
@@ -45,11 +50,11 @@ export default function ProductsPage() {
               playsInline
               poster={productsHero.image}
               className="motion-reduce:hidden absolute inset-0 h-full w-full object-cover"
-              preload="metadata"
+              preload="auto"
             >
               <source src={productsHero.video} type="video/webm" />
             </video>
-          ) : null}
+          )}
         </div>
         <div className="absolute inset-0 bg-[linear-gradient(90deg,rgba(95,12,102,0.92)_0%,rgba(128,0,139,0.62)_58%,rgba(34,0,37,0.18)_100%)]" />
 
