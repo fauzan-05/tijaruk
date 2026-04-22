@@ -4,7 +4,7 @@ export const assets = {
   heroVideo: "/home-images/herovideo.webm",
   aboutImage: "/home-images/about-image.webp",
   servicesImage: "/home-images/services-image.webp",
-  doodlePattern: "/home-images/doodle-pattern.svg",
+  doodlePattern: "/sourcing/rfq-pattern.webp",
   testimonialAvatar: "/home-images/testimonial-avatar.webp",
 };
 
@@ -26,12 +26,14 @@ export const serviceCards = [
 ];
 
 export const benefitCards = [
-  { title: "Built for Wholesalers & Entrepreneurs", icon: "handshake" },
-  { title: "Saudi-Focused, Globally Connected", icon: "globe" },
-  { title: "All-in-One Digital Trade Platform", icon: "spark" },
-  { title: "Fast Turnaround & Streamlined Logistics", icon: "logistics" },
-  { title: "Trusted, Verified Suppliers Only", icon: "check" },
-  { title: "End-to-End Business Support", icon: "support" },
+  { title: "Saudi market access, structured right", icon: "handshake" },
+  { title: "One platform. Complete trade control", icon: "globe" },
+  { title: "Faster movement across your supply chain", icon: "spark" },
+  { title: "A network built on verified suppliers", icon: "logistics" },
+  { title: "Everything aligned for smooth operations", icon: "check" },
+  { title: "Structured around your business needs", icon: "support" },
+  { title: "Engineered for operational scale", icon: "personal-business" },
+  { title: "Built for Wholesalers & Entrepreneurs", icon: "entrepreneurs", breakAfterAmp: true },
 ];
 
 export const testimonials = [

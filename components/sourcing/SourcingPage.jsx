@@ -29,6 +29,43 @@ function SourcingIcon({ className = "", type }) {
   };
 
   switch (type) {
+    case "domestic-price":
+      return (
+        <svg {...sharedProps}>
+          <path d="M5 9.5c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2v5c0 1.1-.9 2-2 2H7c-1.1 0-2-.9-2-2v-5Z" />
+          <path d="M8 7.5V6a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v1.5" />
+          <path d="M9 12h6" />
+          <path d="M12 9.5v5" />
+        </svg>
+      );
+    case "domestic-delivery":
+      return (
+        <svg {...sharedProps}>
+          <path d="M4 8.5h8v6H4z" />
+          <path d="M12 10h3.5l2.5 2.5v2H12z" />
+          <circle cx="8" cy="17" r="1.75" />
+          <circle cx="16.5" cy="17" r="1.75" />
+          <path d="M6 6.5h6" />
+          <path d="M5.5 12.5h3" />
+        </svg>
+      );
+    case "domestic-no-customs":
+      return (
+        <svg {...sharedProps}>
+          <path d="M8 4.5h8l2 2v11a2 2 0 0 1-2 2H8a2 2 0 0 1-2-2v-11l2-2Z" />
+          <path d="M9 9.5h6" />
+          <path d="M9 13h6" />
+          <path d="M5 5l14 14" />
+        </svg>
+      );
+    case "domestic-quality":
+      return (
+        <svg {...sharedProps}>
+          <path d="M12 4.5 18 7v4.2c0 3.7-2.3 6.8-6 8.3-3.7-1.5-6-4.6-6-8.3V7l6-2.5Z" />
+          <path d="m9.6 11.9 1.6 1.6 3.4-3.6" />
+          <path d="M16.8 16.8 20 20" />
+        </svg>
+      );
     case "price":
       return (
         <svg {...sharedProps}>
@@ -104,7 +141,18 @@ function FeatureRow({ feature, tone }) {
     <div className="sourcing-feature-card relative">
       <div className="pointer-events-none absolute left-0 top-1/2 z-20 -translate-x-1/2 -translate-y-1/2">
         <div className="flex h-[52px] w-[52px] items-center justify-center rounded-full border border-[#dedede] bg-white text-[#6a1a73] shadow-[0_8px_18px_rgba(24,24,24,0.08)] sm:h-[60px] sm:w-[60px]">
-          <SourcingIcon className="h-5 w-5 sm:h-6 sm:w-6" type={feature.icon} />
+          {feature.iconImage ? (
+            <Image
+              alt=""
+              className="h-5 w-5 object-contain sm:h-6 sm:w-6"
+              height={24}
+              loading="lazy"
+              src={feature.iconImage}
+              width={24}
+            />
+          ) : (
+            <SourcingIcon className="h-5 w-5 sm:h-6 sm:w-6" type={feature.icon} />
+          )}
         </div>
       </div>
 
@@ -263,10 +311,6 @@ function HeroSection() {
 
           <div className="sourcing-hero-grid mt-8 grid gap-8 lg:grid-cols-[minmax(0,0.95fr)_minmax(0,1.05fr)] lg:items-start">
             <div>
-              <h2 className="max-w-[560px] whitespace-pre-line font-['Poppins',sans-serif] text-[1.2rem] font-semibold leading-tight text-[#181818] sm:text-[1.65rem] lg:text-[1.85rem]">
-                {sourcingHero.title}
-              </h2>
-
               <div className="sourcing-hero-media relative mt-6 overflow-hidden rounded-[12px] shadow-[0_26px_65px_rgba(27,0,30,0.14)]">
                 <Image
                   alt="Business sourcing discussion"
@@ -291,6 +335,14 @@ function HeroSection() {
                   </div>
                 </div>
               </div>
+
+              <h2 className="mt-6 max-w-[560px] font-['Poppins',sans-serif] text-[1.2rem] font-semibold leading-tight text-[#181818] sm:text-[1.65rem] lg:text-[1.85rem]">
+                {sourcingHero.title.split("\n").map((line, index) => (
+                  <span key={`${index}-${line}`} className="block">
+                    {line}
+                  </span>
+                ))}
+              </h2>
             </div>
 
             <div className="lg:pt-4">

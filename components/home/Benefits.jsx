@@ -1,21 +1,44 @@
 "use client";
 
 import { useLayoutEffect, useRef } from "react";
+import Image from "next/image";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { createScrollTriggerRefresh } from "../animation/scrollTriggerRefresh";
-import { benefitCards } from "../data";
+import { assets, benefitCards } from "../data";
 import { ArrowIcon, BenefitIcon } from "../ui";
 
 gsap.registerPlugin(ScrollTrigger);
 
-function BenefitCard({ title, icon }) {
+function BenefitCard({ title, icon, breakAfterAmp = false }) {
+  const shouldSplit = breakAfterAmp && typeof title === "string" && title.includes(" & ");
+  const titleLines = shouldSplit ? title.split(" & ") : null;
+
   return (
-    <article className="relative h-full overflow-hidden rounded-[18px] bg-white p-7 shadow-[0_20px_60px_rgba(26,15,44,0.12)] lg:min-h-[190px] lg:w-full">
-      <div className="relative flex h-full flex-col gap-7">
+    <article className="relative h-[280px] w-[min(360px,calc(100vw-4.5rem))] shrink-0 overflow-hidden rounded-[21px] bg-white shadow-[0_20px_60px_rgba(26,15,44,0.12)] sm:w-[360px]">
+      <div className="absolute inset-0 opacity-[0.23]">
+        <Image
+          alt=""
+          className="size-full object-cover"
+          fill
+          loading="lazy"
+          sizes="(min-width: 640px) 360px, 90vw"
+          src={assets.doodlePattern}
+        />
+      </div>
+
+      <div className="relative flex h-full flex-col px-8 pb-8 pt-10">
         <BenefitIcon type={icon} />
-        <h3 className="max-w-[12ch] font-['Manrope',sans-serif] text-[1.05rem] font-bold leading-[1.45] text-[#5f0c66] sm:text-[1.15rem]">
-          {title}
+        <h3 className="mt-[42px] max-w-[16ch] font-ibrand text-[26px] font-medium leading-[34px] text-[#5f0c66]">
+          {shouldSplit ? (
+            <>
+              {titleLines[0]} &amp;
+              <br />
+              {titleLines[1]}
+            </>
+          ) : (
+            title
+          )}
         </h3>
       </div>
     </article>
@@ -33,48 +56,53 @@ export default function Benefits() {
     const ctx = gsap.context(() => {
       const panel = panelRef.current;
       const revealItems = gsap.utils.toArray("[data-benefit-reveal]", panel);
+      const prefersReducedMotion = window.matchMedia?.(
+        "(prefers-reduced-motion: reduce)"
+      )?.matches;
 
-      gsap.set(panel, {
-        autoAlpha: 0,
-        force3D: true,
-        scale: 0.985,
-        willChange: "transform, opacity",
-        y: 28,
-      });
+      if (prefersReducedMotion) return;
 
-      gsap.set(revealItems, {
-        autoAlpha: 0,
+      gsap.set([panel, ...revealItems], {
         force3D: true,
         willChange: "transform, opacity",
-        y: 18,
       });
 
-      const tl = gsap.timeline({
-        defaults: { ease: "power3.out" },
-        onComplete: () => {
-          gsap.set([panel, ...revealItems], { clearProps: "willChange" });
-        },
-        scrollTrigger: {
-          trigger: sectionRef.current,
-          start: "top 74%",
-          toggleActions: "play none none none",
-        },
-      });
+      const scrollTrigger = {
+        trigger: sectionRef.current,
+        start: "top 80%",
+        toggleActions: "play none none none",
+      };
 
-      tl.to(panel, {
-        autoAlpha: 1,
-        duration: 1.05,
-        scale: 1,
-        y: 0,
-      }).to(
-        revealItems,
+      gsap.fromTo(
+        panel,
+        { autoAlpha: 0, scale: 0.985, y: 28 },
         {
           autoAlpha: 1,
+          duration: 1.05,
+          ease: "power3.out",
+          immediateRender: false,
+          scale: 1,
+          scrollTrigger,
+          y: 0,
+        }
+      );
+
+      gsap.fromTo(
+        revealItems,
+        { autoAlpha: 0, y: 18 },
+        {
+          autoAlpha: 1,
+          delay: 0.22,
           duration: 0.72,
+          ease: "power3.out",
+          immediateRender: false,
+          scrollTrigger,
           stagger: 0.1,
           y: 0,
-        },
-        0.22
+          onComplete: () => {
+            gsap.set([panel, ...revealItems], { clearProps: "willChange" });
+          },
+        }
       );
     }, sectionRef);
 
@@ -91,7 +119,7 @@ export default function Benefits() {
     const firstCard = trackRef.current.querySelector("[data-benefit-card]");
     if (!firstCard) return;
 
-    const gap = 14; // gap-3.5
+    const gap = 17;
     const cardWidth = firstCard.getBoundingClientRect().width;
     const distance = cardWidth + gap;
 
@@ -117,37 +145,38 @@ export default function Benefits() {
     >
       <div
         ref={panelRef}
-        className="relative mx-auto w-full max-w-[1180px] overflow-hidden rounded-[10px] bg-[#5f0c66] px-6 py-8 shadow-[0_30px_80px_rgba(68,7,82,0.25)] sm:px-8 lg:min-h-[540px] lg:px-[2.5rem] lg:py-[1.8rem]"
+        className="relative mx-auto w-full max-w-[1320px] overflow-hidden rounded-[12px] bg-[#5f0c66] shadow-[0_30px_80px_rgba(68,7,82,0.25)]"
       >
-        <div className="absolute inset-0 opacity-[0.1]">
-          <img
+        <div className="absolute inset-0 opacity-[0.05]">
+          <Image
             alt=""
             className="size-full object-cover"
-            decoding="async"
+            fill
             loading="lazy"
-            src="/sourcing/rfq-pattern.webp"
+            sizes="(min-width: 1024px) 1395px, 100vw"
+            src={assets.doodlePattern}
           />
         </div>
 
-        <div className="relative">
+        <div className="relative px-6 py-10 sm:px-10 sm:py-12 lg:px-[100px] lg:py-[72px]">
           <h2
             data-benefit-reveal
-            className="max-w-[12.5ch] font-['ibrand',sans-serif] text-[2.15rem] font-semibold leading-[0.95] text-white sm:text-[2.45rem] lg:text-[2.8rem]"
+            className="max-w-[15ch] font-ibrand text-[2.2rem] font-semibold leading-[1.05] text-white sm:text-[2.75rem] lg:text-[52px] lg:leading-[58px]"
           >
-            <span className="block whitespace-nowrap">We make trade and</span>
-            <span className="mt-1 block whitespace-nowrap">business simple.</span>
+            <span className="block sm:whitespace-nowrap">We make trade and</span>
+            <span className="mt-1 block sm:whitespace-nowrap">business simple.</span>
           </h2>
 
-          <div data-benefit-reveal className="mt-7 overflow-hidden pr-4 lg:pr-[1.6rem]">
+          <div data-benefit-reveal className="mt-8 overflow-hidden lg:mt-[56px]">
             <div
               ref={trackRef}
-              className="flex gap-3.5 overflow-x-auto scroll-smooth [scrollbar-width:none] [-ms-overflow-style:none] [&::-webkit-scrollbar]:hidden"
+              className="flex gap-[17px] overflow-x-auto scroll-smooth pb-2 [scrollbar-width:none] [-ms-overflow-style:none] [&::-webkit-scrollbar]:hidden"
             >
               {benefitCards.map((card) => (
                 <div
                   key={card.title}
                   data-benefit-card
-                  className="w-full shrink-0 lg:w-[calc((100%-1.75rem)/3)]"
+                  className="shrink-0"
                 >
                   <BenefitCard {...card} />
                 </div>
@@ -155,22 +184,22 @@ export default function Benefits() {
             </div>
           </div>
 
-          <div data-benefit-reveal className="mt-12 flex items-center justify-center gap-3">
+          <div data-benefit-reveal className="mt-8 flex items-center justify-center gap-3 lg:mt-10">
             <button
               aria-label="Previous"
-              className="flex size-[3rem] items-center justify-center rounded-full bg-white text-[#5f0c66] transition hover:bg-[#f4dcb8]"
+              className="flex size-[56px] items-center justify-center rounded-full bg-white text-[#5f0c66] transition hover:bg-[#f4dcb8]"
               onClick={showPrevious}
               type="button"
             >
-              <ArrowIcon className="size-4 rotate-180" />
+              <ArrowIcon className="size-[18px] rotate-180" />
             </button>
             <button
               aria-label="Next"
-              className="flex size-[3rem] items-center justify-center rounded-full bg-white text-[#5f0c66] transition hover:bg-[#f4dcb8]"
+              className="flex size-[56px] items-center justify-center rounded-full bg-white text-[#5f0c66] transition hover:bg-[#f4dcb8]"
               onClick={showNext}
               type="button"
             >
-              <ArrowIcon className="size-4" />
+              <ArrowIcon className="size-[18px]" />
             </button>
           </div>
         </div>

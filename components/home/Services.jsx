@@ -11,51 +11,100 @@ import { SectionTag } from "../ui";
 gsap.registerPlugin(ScrollTrigger);
 
 const serviceCardPositions = [
-  "left-1/2 top-[220px] -translate-x-1/2 sm:left-auto sm:right-[-42px] sm:top-1 sm:translate-x-[26%] lg:right-[-30px] lg:top-2 lg:translate-x-[26%]",
-  "left-1/2 top-[430px] -translate-x-1/2 sm:left-[34%] sm:top-[18%] sm:translate-x-0 lg:left-[34%] lg:top-[20%]",
-  "left-1/2 top-[640px] -translate-x-1/2 sm:left-[-6px] sm:top-[37%] sm:-translate-x-[36%] lg:left-0 lg:top-[39%] lg:-translate-x-[36%]",
-  "left-1/2 top-[850px] -translate-x-1/2 sm:left-auto sm:right-[-42px] sm:top-[39%] sm:translate-x-[26%] lg:right-[-30px] lg:top-[41%] lg:translate-x-[26%]",
-  "left-1/2 top-[1060px] -translate-x-1/2 sm:left-[34%] sm:top-[60%] sm:translate-x-0 lg:left-[34%] lg:top-[62%]",
-  "left-1/2 top-[1270px] -translate-x-1/2 sm:left-[-6px] sm:top-[81%] sm:-translate-x-[36%] lg:left-0 lg:top-[83%] lg:-translate-x-[36%]",
+  "left-1/2 top-[210px] -translate-x-1/2 sm:left-[28px] sm:top-[80px] sm:translate-x-0 lg:left-[60px] lg:top-[250px]",
+  "left-1/2 top-[405px] -translate-x-1/2 sm:left-auto sm:right-[20px] sm:top-[80px] sm:translate-x-0 lg:left-[800px] lg:top-[250px] lg:right-auto",
+  "left-1/2 top-[600px] -translate-x-1/2 sm:left-1/2 sm:top-[330px] sm:-translate-x-1/2 lg:left-[430px] lg:top-[575px] lg:translate-x-0",
+  "left-1/2 top-[770px] -translate-x-1/2 sm:left-[28px] sm:top-[580px] sm:translate-x-0 lg:left-[60px] lg:top-[930px]",
+  "left-1/2 top-[965px] -translate-x-1/2 sm:left-auto sm:right-[20px] sm:top-[580px] sm:translate-x-0 lg:left-[800px] lg:top-[930px] lg:right-auto",
+  "left-1/2 top-[1160px] -translate-x-1/2 sm:left-1/2 sm:top-[830px] sm:-translate-x-1/2 lg:left-[430px] lg:top-[1275px] lg:translate-x-0",
 ];
 
-function ServiceCard({ id, title, tone, positionClassName }) {
-  const isLight = tone === "light";
+function AsteriskIcon({ className = "" }) {
+  return (
+    <svg
+      aria-hidden="true"
+      className={className}
+      fill="none"
+      viewBox="0 0 100 100"
+      xmlns="http://www.w3.org/2000/svg"
+    >
+      <g stroke="currentColor" strokeLinecap="round" strokeWidth="12">
+        <path d="M50 6v88" />
+        <path d="M6 50h88" />
+        <path d="M18 18l64 64" />
+        <path d="M82 18 18 82" />
+      </g>
+    </svg>
+  );
+}
+
+const serviceCardCopy = {
+  "01": ["Import & Export", "Solutions"],
+  "02": ["Business Setup", "in KSA"],
+  "03": ["Entrepreneur", "Development"],
+  "04": ["Branding &", "Marketing"],
+  "05": ["Business Setup", "in KSA"],
+  "06": ["Global Product", "Marketing"],
+};
+
+const serviceCardAsteriskPositions = {
+  "01": "right-[-14px] top-[-10px] size-[110px] sm:right-[-16px] sm:top-[-12px] sm:size-[136px] lg:right-[-18px] lg:top-[-12px] lg:size-[172px]",
+  "02": "left-[-14px] top-[-10px] size-[110px] sm:left-[-16px] sm:top-[-12px] sm:size-[136px] lg:left-[-18px] lg:top-[-12px] lg:size-[172px]",
+  "03": "right-[-14px] top-[-10px] size-[110px] sm:right-[-16px] sm:top-[-12px] sm:size-[136px] lg:right-[-18px] lg:top-[-12px] lg:size-[172px]",
+  "04": "left-[-18px] bottom-[-18px] size-[116px] sm:left-[-20px] sm:bottom-[-20px] sm:size-[140px] lg:left-[-24px] lg:bottom-[-24px] lg:size-[176px]",
+  "05": "right-[-18px] bottom-[-18px] size-[116px] sm:right-[-20px] sm:bottom-[-20px] sm:size-[140px] lg:right-[-24px] lg:bottom-[-24px] lg:size-[176px]",
+  "06": "left-[-18px] bottom-[-18px] size-[116px] sm:left-[-20px] sm:bottom-[-20px] sm:size-[140px] lg:left-[-24px] lg:bottom-[-24px] lg:size-[176px]",
+};
+
+function ServiceCard({ id, positionClassName }) {
+  const isLight = id === "03" || id === "06";
+  const numberOnRight = id === "02" || id === "05";
+  const lines = serviceCardCopy[id] ?? [id, ""];
+  const asteriskClassName = serviceCardAsteriskPositions[id] ?? "right-0 top-0 size-[180px]";
 
   return (
     <article
       className={[
-        "service-what-card absolute flex h-[180px] w-[164px] flex-col justify-between overflow-hidden p-4 shadow-[0_14px_32px_rgba(0,0,0,0.13)] sm:h-[208px] sm:w-[194px] sm:p-5 lg:h-[250px] lg:w-[264px] lg:p-6 xl:h-[266px] xl:w-[278px]",
+        "service-what-card absolute overflow-hidden rounded-none",
         positionClassName,
+        "h-[172px] w-[239px] sm:h-[206px] sm:w-[274px] lg:h-[314px] lg:w-[353px]",
         isLight
-          ? "border border-[#eee8e1] bg-[#fffdfb] text-[#171717]"
-          : "bg-[#690c71] text-white",
+          ? "bg-white text-black"
+          : "bg-[#5f0c66] text-white",
       ].join(" ")}
     >
-      {!isLight && (
-        <>
-          <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_right,rgba(255,255,255,0.08),transparent_30%)]" />
-          <div className="absolute inset-0 bg-[linear-gradient(160deg,rgba(255,255,255,0.02),rgba(0,0,0,0.08))]" />
-        </>
-      )}
+      <div
+        aria-hidden="true"
+        className={[
+          "pointer-events-none absolute",
+          asteriskClassName,
+          isLight ? "text-[#efe9e4] opacity-45" : "text-[#8f0b9e] opacity-40",
+        ].join(" ")}
+      >
+        <AsteriskIcon className="size-full" />
+      </div>
 
-      <span className="relative font-ibrand text-[1.9rem] font-semibold leading-none text-[#e39b4d] sm:text-[2.15rem] lg:text-[2.35rem]">
+      <span
+        className={[
+          "absolute top-4 font-ibrand text-[30px] font-semibold leading-none text-[#e39b4d] sm:top-5 sm:text-[38px] lg:top-7 lg:text-[54px]",
+          numberOnRight
+            ? "right-4 sm:right-5 lg:right-7"
+            : "left-4 sm:left-5 lg:left-7",
+        ].join(" ")}
+      >
         {id}
       </span>
 
-      <h3 className="relative mx-auto my-auto max-w-[12ch] text-center font-ibrand text-[1.08rem] font-semibold leading-[1.15] sm:text-[1.24rem] lg:text-[1.52rem]">
-        {title}
-      </h3>
-
-      <span
-        aria-hidden="true"
+      <h3
         className={[
-          "pointer-events-none absolute font-['Manrope',sans-serif] text-[5.2rem] font-light leading-none sm:text-[6rem] lg:text-[6.8rem]",
-          isLight ? "-left-2 bottom-0 text-[#ece6e0]" : "right-2 top-0 text-[#7a1682]",
+          "absolute left-1/2 top-[69%] w-[10.5ch] -translate-x-1/2 -translate-y-1/2 text-center font-ibrand font-semibold leading-[1.02] sm:top-[69%] lg:top-[71%]",
+          isLight ? "text-black" : "text-white",
+          "text-[1rem] sm:text-[1.18rem] lg:text-[2rem] lg:leading-[1.04]",
         ].join(" ")}
       >
-        *
-      </span>
+        <span className="block">{lines[0]}</span>
+        <span className="block">{lines[1]}</span>
+      </h3>
     </article>
   );
 }
@@ -83,7 +132,7 @@ export default function Services() {
           scrollTrigger: {
             trigger: sectionRef.current,
             start: "top 78%",
-            toggleActions: "play none reverse none",
+            toggleActions: "play none none none",
           },
         }
       );
@@ -161,45 +210,38 @@ export default function Services() {
     <section
       id="services"
       ref={sectionRef}
-      className="relative isolate h-screen overflow-hidden bg-[#12080d]"
+      className="relative isolate h-screen overflow-hidden bg-[#1f161d]"
     >
       <Image
         alt=""
-        className="absolute inset-0 size-full object-cover object-center"
+        className="absolute inset-0 size-full object-cover object-[center_42%]"
         fill
          loading="lazy"
         sizes="100vw"
         src={assets.servicesImage}
       />
-      <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(12,6,10,0.58)_0%,rgba(19,10,15,0.54)_18%,rgba(20,8,17,0.62)_100%)]" />
-      <div className="absolute inset-0 bg-[radial-gradient(circle_at_left_top,rgba(255,255,255,0.08),transparent_24%),radial-gradient(circle_at_right_center,rgba(91,9,101,0.22),transparent_28%)]" />
+      <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(18,10,16,0.42)_0%,rgba(22,13,19,0.36)_18%,rgba(16,10,15,0.42)_100%)]" />
       <div
         ref={introRef}
-        className="absolute left-4 top-10 z-20 flex max-w-[340px] flex-col items-start text-left sm:left-6 sm:top-12 sm:max-w-[420px] lg:left-10 lg:top-14 lg:max-w-[520px]"
+        className="absolute left-4 top-10 z-20 flex max-w-[300px] flex-col items-start text-left sm:left-6 sm:top-12 sm:max-w-[360px] lg:left-10 lg:top-14 lg:max-w-[430px]"
       >
         <SectionTag className="block text-left text-[1.2rem] normal-case tracking-normal text-[#e3a054] sm:text-[1.38rem] lg:text-[1.48rem]">
           What do We Do?
         </SectionTag>
-        <h2 className="mt-3 font-ibrand text-[2.15rem] leading-[1.04] text-white sm:mt-4 sm:text-[2.6rem] lg:mt-5 lg:text-[3rem]">
+        <h2 className="mt-3 font-ibrand text-[1.95rem] leading-[1.04] text-white sm:mt-4 sm:text-[2.2rem] lg:mt-4 lg:text-[2.55rem]">
           <span className="block sm:whitespace-nowrap">We make trade and</span>
           <span className="mt-2 block sm:whitespace-nowrap">business simple.</span>
         </h2>
       </div>
 
       <div className="relative mx-auto h-full w-full max-w-[1440px] px-4 pt-16 sm:px-6 sm:pt-20 lg:px-10 lg:pt-24">
-        <div className="relative mx-auto h-[calc(100vh-64px)] max-w-[680px] overflow-hidden sm:h-[calc(100vh-80px)] sm:max-w-[760px] lg:h-[calc(100vh-96px)] lg:max-w-[1040px] xl:max-w-[1120px]">
+        <div className="relative mx-auto h-[calc(100vh-64px)] w-full max-w-[680px] overflow-hidden sm:h-[calc(100vh-80px)] sm:max-w-[760px] lg:h-[calc(100vh-96px)] lg:max-w-[1440px]">
           <div
             ref={cardsTrackRef}
-            className="relative mx-auto h-[1500px] max-w-[470px] sm:h-[1120px] sm:max-w-[540px] lg:h-[1600px] lg:max-w-[760px] xl:h-[1680px] xl:max-w-[860px]"
+            className="relative mx-auto h-[1380px] max-w-[320px] sm:h-[1180px] sm:max-w-[760px] lg:h-[1700px] lg:max-w-[1200px]"
           >
             {serviceCards.map((card, index) => (
-              <ServiceCard
-                key={card.id}
-                id={card.id}
-                positionClassName={serviceCardPositions[index]}
-                title={card.title}
-                tone={card.tone}
-              />
+              <ServiceCard key={card.id} id={card.id} positionClassName={serviceCardPositions[index]} />
             ))}
           </div>
         </div>

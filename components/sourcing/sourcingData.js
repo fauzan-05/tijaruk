@@ -23,13 +23,15 @@ export const sourcingSections = [
     imageAlt: "Domestic supplier collaboration in a workshop",
     features: [
       {
-        icon: "price",
+        icon: "domestic-price",
+        iconImage: "/sourcingicon/pricetagw.png",
         title: "Lower shipping costs",
         description:
           "Shorter supply routes help reduce logistics spend and make repeat ordering easier to manage.",
       },
       {
-        icon: "truck",
+        icon: "domestic-delivery",
+        iconImage: "/sourcingicon/shipping fast.png",
         title: "Faster delivery times",
         description:
           "Local availability means shorter lead times, better planning, and quicker replenishment cycles.",
@@ -41,7 +43,8 @@ export const sourcingSections = [
           "Domestic sourcing avoids import clearance delays and removes a large layer of operational complexity.",
       },
       {
-        icon: "inspect",
+        icon: "domestic-quality",
+        iconImage: "/sourcingicon/qualitytick.png",
         title: "Easier quality control",
         description:
           "Nearby suppliers make inspections, revisions, and production follow-up much more practical.",
@@ -59,24 +62,28 @@ export const sourcingSections = [
     features: [
       {
         icon: "shield",
+        iconImage: "/sourcingicon/shieldcheck.png",
         title: "Quality verification",
         description:
           "We help validate supplier credibility, production readiness, and sample quality before you commit.",
       },
       {
         icon: "price",
+        iconImage: "/sourcingicon/pricetagy.png",
         title: "Competitive pricing",
         description:
           "Global sourcing opens up more pricing options and better-fit products for your target market.",
       },
       {
         icon: "globe",
+        iconImage: "/sourcingicon/global.png",
         title: "Access to global markets",
         description:
           "Expand your sourcing network beyond local limitations and discover suppliers built for scale.",
       },
       {
         icon: "customs",
+        iconImage: "/sourcingicon/emojione-monotone_customs.png",
         title: "Full customs handling",
         description:
           "We coordinate documentation and import steps so your team can focus on buying decisions.",

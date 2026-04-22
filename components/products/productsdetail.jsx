@@ -26,38 +26,25 @@ function StarRating() {
 
 function ShippingIcon() {
   return (
-    <svg
-      className="h-4.5 w-4.5"
-      fill="none"
-      stroke="currentColor"
-      strokeLinecap="round"
-      strokeLinejoin="round"
-      strokeWidth="2"
-      viewBox="0 0 24 24"
-    >
-      <path d="M3 7h10v8H3z" />
-      <path d="M13 10h4l2 2v3h-6z" />
-      <circle cx="8" cy="17" r="2" />
-      <circle cx="17" cy="17" r="2" />
-    </svg>
+    <Image
+      alt=""
+      className="h-5 w-5 object-contain"
+      height={20}
+      src="/ordernowicons/fastshipblack.png"
+      width={20}
+    />
   );
 }
 
 function PaymentsIcon() {
   return (
-    <svg
-      className="h-4.5 w-4.5"
-      fill="none"
-      stroke="currentColor"
-      strokeLinecap="round"
-      strokeLinejoin="round"
-      strokeWidth="2"
-      viewBox="0 0 24 24"
-    >
-      <rect x="3" y="6" width="18" height="12" rx="2" />
-      <path d="M3 10h18" />
-      <path d="M7 15h3" />
-    </svg>
+    <Image
+      alt=""
+      className="h-5 w-5 object-contain"
+      height={20}
+      src="/ordernowicons/materialsymbolspayments.png"
+      width={20}
+    />
   );
 }
 
