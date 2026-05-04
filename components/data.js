@@ -13,7 +13,8 @@ export const navItems = [
   { label: "About Us", href: "/about" },
   { label: "Sourcing", href: "/sourcing" },
   { label: "Our Services", href: "/services" },
-  { label: "Products", href: "/products" },
+  { label: "Domestic", href: "/products/domestic" },
+  { label: "International", href: "/products/international" },
 ];
 
 export const serviceCards = [
@@ -64,5 +65,7 @@ export const exploreLinks = [
   { label: "Services", href: "/services" },
   { label: "Contact Us", href: "/contact" },
   { label: "Products", href: "/products" },
+  { label: "Domestic", href: "/products/domestic" },
+  { label: "International", href: "/products/international" },
   { label: "Sourcing", href: "/sourcing" },
 ];

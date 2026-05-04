@@ -1,19 +1,18 @@
 export const aboutHero = {
   title: "About Tijaruk",
   description: [
-    "Tijaruk connects Saudi Arabia-based wholesalers, suppliers, and retailers\nto global markets through trusted partnerships, transparent pricing, and\ncomplete business support. We provide end-to-end solutions covering\nsourcing, branding, consultancy, and technology--helping businesses\ngrow with confidence and ease.",
-    "Our vision is to be the most trusted digital bridge between Saudi Arabia and the world, making global trade simpler, smarter, and more accessible for entrepreneurs and enterprises alike.",
+    "Tijaruk is built on a clear intent- To create a dependable link between \n Saudi Arabia and global markets where businesses can operate with\n clarity and confidence. With hands-on expertise in sourcing and trade\n operations, we ensure every connection is structured, transparent, and\n reliable.\nWe simplify how businesses manage sourcing, trade, and operations by\n bringing them into one coordinated system. Through close collaboration\n with suppliers and partners, we reduce complexity, strengthen control,\n and enable consistent expansion across markets.",
   ],
   image: "/about/hero.webp",
 };
 
 export const whoWeAre = {
-  eyebrow: "Who We Are",
+  eyebrow: "Who We are",
   title:
-    "TIJARUK is your one-stop trade platform that connects buyers and suppliers effortlessly and instantly.",
+    "TTijaruk is a trade and business platform connecting buyers, suppliers, and markets through a structured system.",
   description: [
-    "We cut through the noise of traditional trade--no more scattered searches, unclear pricing, or wasted time. With TIJARUK, you gain direct access to trusted suppliers, competitive prices, and the right products--all in one place.",
-    "Our platform delivers complete transparency and helps you build trust with your customers even without lengthy verifications or formal setups. TIJARUK is where ideas, products, and people come together to form real trade connections.",
+    "Tijaruk is built to simplify how businesses connect across trade. We bring buyers and suppliers together through a structured platform that removes friction and creates direct, reliable access to global markets",
+"By combining sourcing, pricing clarity, and supplier verification into one system, we eliminate scattered processes and reduce uncertainty. Businesses gain better control over decisions, timelines, and outcomes. Our approach is designed to make trade more transparent and dependable where connections are clear, processes are defined, and opportunities turn into real, scalable business.",
   ],
   images: [
     {
@@ -36,10 +35,10 @@ export const whoWeAre = {
 
 export const whyWeExist = {
   eyebrow: "Why We Exist",
-  title: "TIJARUK wasn't just built, it was born from necessity.",
+  title: "Tijaruk is built to address the gaps in how trade operates across markets.",
   description: [
-    "Businesses in Saudi Arabia faced the same blockers again and again: difficulty finding reliable suppliers, unclear pricing, trust gaps, and outdated systems. The problem was never ambition. It was the lack of a platform designed with the Saudi mindset in mind.",
-    "So we created TIJARUK as a solution shaped by cultural insight and real business needs. It is where ambition meets trust, and where every Saudi business dream finds a clearer way forward.",
+    "Businesses in Saudi Arabia often faced fragmented sourcing, unclear pricing, and limited access to reliable suppliers. The challenge wasn’t demand, it was the absence of a structured system built for how trade actually works.",
+    "Tijaruk brings that structure into place. By aligning sourcing, supplier access, and trade execution within a single framework, we reduce uncertainty and create a more dependable path for businesses to operate and grow.",
   ],
   images: [
     {
@@ -57,8 +56,9 @@ export const missionVision = [
   {
     title: "Our Mission",
     description: [
-      "To build a trusted, transparent, and easy-to-use platform for global trade and business development.",
-      "We connect international suppliers with the Saudi market by removing barriers, building trust, and offering simple tools with smart support. Every service we provide is designed to help businesses succeed today and grow stronger for tomorrow.",
+      "To bring structure and accountability to how businesses manage sourcing and trade.",
+      "Tijaruk connects international suppliers with the Saudi market through a defined operating model that simplifies procurement, pricing, and execution. Instead of fragmented processes, we create a clear system where each stage is aligned and manageable.",
+      "We focus on how trade actually runs, coordinating suppliers, timelines, and decisions so businesses can operate without disruption. The result is a more controlled environment where execution is consistent and outcomes are reliable",  "Our role is to make trade practical at scale where complexity is reduced, visibility is improved, and businesses can move forward with clarity.",
     ],
     image: {
       alt: "Air cargo logistics and shipping containers",
@@ -68,8 +68,10 @@ export const missionVision = [
   {
     title: "Our Vision",
     description: [
-      "To become the most trusted digital bridge between Saudi Arabia and the world.",
-      "We envision a future where Saudi entrepreneurs, wholesalers, and retailers can move into global opportunities with more clarity, stronger partnerships, and dependable support at every stage.",
+      "To establish a more structured and dependable standard for global trade.",
+      "Tijaruk is built around the idea that trade should not rely on uncertainty. We aim to create a system where access to markets is direct, processes are defined, and operations can scale without friction.",
+      "By strengthening the connection between Saudi demand and global supply, we enable businesses to expand across regions through a framework that is stable, transparent, and built for long-term use.",
+      "Our vision is not just access, it is consistency. A trade environment where businesses can plan, operate, and grow without the usual gaps that slow expansion.",
     ],
     image: {
       alt: "Cargo ship moving across a bright blue harbor",

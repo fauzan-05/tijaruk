@@ -1,6 +1,8 @@
 export const servicesIntro = [
-  "Tijaruk gives you direct access to verified global suppliers with transparent pricing and the right products for your market. Alongside sourcing, we provide complete business consultancy in Saudi Arabia covering GRO/PRO, visa, accounting, and tax services so you can set up and grow with confidence.",
-  "We also help businesses build powerful brands through strategy, content, and platform management, ensuring a strong presence both online and offline. With Tijaruk, sourcing, consultancy, and branding come together to simplify trade and accelerate growth.",
+  "Tijaruk helps businesses connect with trusted suppliers across global markets, making sourcing more straightforward, transparent, and dependable. We focus on removing the usual challenges of procurement so you can access the right products with clarity and confidence.",
+  "Our support goes beyond sourcing. For businesses entering or operating in Saudi Arabia, we provide hands-on assistance with company setup, regulatory processes, visa services, accounting, and tax compliance, helping you get started smoothly and run your operations without unnecessary delays.",
+  "We also work with brands to strengthen how they present and grow in the market. From shaping your brand identity to managing content and digital platforms, we ensure your business remains consistent, visible, and competitive.\
+  By bringing sourcing, business support, and brand development into one streamlined approach, Tijaruk makes it easier for businesses to operate efficiently and grow with confidence.",
 ];
 
 export const serviceSections = [
@@ -8,7 +10,7 @@ export const serviceSections = [
     id: "01",
     title: "Import & Export Services",
     description:
-      "TIJARUK is your trusted sourcing and trade partner. We help Saudi-based businesses source and import products from Asia, Africa, and around the globe, while also exporting Saudi-made products to international markets.",
+      "Tijaruk enables businesses to source and move products across global markets with confidence and precision. We support Saudi-based companies in importing from key international regions while facilitating the export of locally produced goods worldwide.From supplier identification and private labeling to streamlined import and export management, every step is handled with clarity, control, and attention to detail",
     features: [
       "Product Sourcing from Global Markets",
       "Private Labeling Services",
